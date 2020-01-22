@@ -11,7 +11,7 @@ site-twitter: #if your site has a twitter account, enter it here
 # Author Settings
 author: Markus Rosenfelder # add your name
 author-img: markus-rosenfelder.jpg #david-freeman.jpg # add your photo
-about-author: much text here much text here much text here much text here much text here much text here much text here much text here # add description
+about-author: PhD student at University of Freiburg. Area of research: Applied Data Science, Machine learning and Deep learning in the context of smart cities. More information about me can be found at the social media contact links below.
 #social-twitter: # add your Twitter handle
 #social-facebook: # add your Facebook handle
 social-github: MarkusRosen # add your Github handle
