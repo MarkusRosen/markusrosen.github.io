@@ -12,7 +12,8 @@ To add new posts, simply add a file in the `_posts` directory that follows the c
 Jekyll also offers powerful support for code snippets:
 
 
-{% highlight python linenos %}
+{% highlight python %}
+
 import pickle
 import torch
 import numpy as np
@@ -141,6 +142,7 @@ with open(f"./data/predictions/predictions_{i}.pkl", "rb") as f:
 # display result relatively large in picture
 # save result + building id + image name + mask size in csv file
 # add window id and size as well to csv file
+
 {% endhighlight %}
 
 
