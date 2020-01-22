@@ -39,3 +39,167 @@ After that, the rest of the packages should be easily installable by using the p
 {% highlight bash %}
 pip install -r requirements.txt
 {% endhighlight %}
+
+## Importing packages
+
+{% highlight python %}
+import numpy as np 
+import pandas as pd
+import geopandas as gpd 
+from scipy.stats import gaussian_kde
+import matplotlib.pyplot as plt
+from matplotlib.font_manager import FontProperties
+from matplotlib.path import Path
+from matplotlib.textpath import TextToPath
+import tilemapbase
+import warnings
+import matplotlib.cbook
+warnings.filterwarnings("ignore",category=matplotlib.cbook.mplDeprecation)
+
+import seaborn as sns
+import shapely.speedups
+shapely.speedups.enable()
+{% endhighlight %}
+
+Download the following data and save extract it into the ./data folder of this project:
+
+- http://download.geofabrik.de/europe/netherlands/noord-holland-latest-free.shp.zip
+- https://maps.amsterdam.nl/open_geodata/geojson.php?KAARTLAAG=GEBIED_STADSDELEN&THEMA=gebiedsindeling
+
+## Loading and preprocessing the data
+
+Load the POI data:
+{% highlight python %}
+points = gpd.read_file("./data/gis_osm_pois_free_1.shp")
+points = points.to_crs({"init": "EPSG:3857"})
+{% endhighlight %}
+
+filter the data for restaurants (or any other POI category)
+{% highlight python %}
+points = points[points["fclass"] == "restaurant"]
+{% endhighlight %}
+take a quick look into the data
+{% highlight python %}
+points
+{% endhighlight %}
+load the shapefile for the city of amsterdam
+{% highlight python %}
+city = gpd.read_file("./data/geojson.json")
+city = city.to_crs({"init": "EPSG:3857"})
+{% endhighlight %}
+take a quick look into this data as well
+{% highlight python %}
+city
+{% endhighlight %}
+perform a spatial join between the points and polygons and filter out any points that did not match with the polygons
+{% highlight python %}
+points = gpd.sjoin(points, city, how="left")
+points = points.dropna(subset=["index_right"])
+{% endhighlight %}
+plot both data sets to see if the spatial join was performed correctly
+{% highlight python %}
+# edit the figure size however you need to
+plt.figure(num=None, figsize=(10,10), dpi=80, facecolor='w', edgecolor='k')
+# create plot and axes
+fig = plt.plot()
+ax1 = plt.axes()
+# these values can be changed as needed, the markers are LaTeX symbols
+city.plot(ax=ax1, alpha=0.1, edgecolor="black", facecolor="white")
+points.plot(ax=ax1, alpha = 0.1, color="red", marker='$\\bigtriangledown$',)
+ax1.figure.savefig('./data/plot1.png', bbox_inches='tight')
+{% endhighlight %}
+
+## Add a background map to the plot
+
+to get a nice background map, we need to find out all the boundaries of our data and save that for later plotting
+{% highlight python %}
+bounding_box = [points["geometry"].x.min(), points["geometry"].x.max(), points["geometry"].y.min(), points["geometry"].y.max()]
+{% endhighlight %}
+load the background map using `tilemapbase`
+{% highlight python %}
+tilemapbase.start_logging()
+tilemapbase.init(create=True)
+extent = tilemapbase.extent_from_frame(city, buffer = 25)
+{% endhighlight %}
+{% highlight python %}
+fig, ax = plt.subplots(figsize=(10,10))
+
+plotter = tilemapbase.Plotter(extent, tilemapbase.tiles.build_OSM(), width=1000)
+plotter.plot(ax)
+ax.set_xlim(bounding_box[0]+2000, bounding_box[1])
+ax.set_ylim(bounding_box[2]+2000, bounding_box[3])
+city.plot(ax=ax, alpha=0.3, edgecolor="black", facecolor="white")
+points.plot(ax=ax, alpha = 0.4, color="red", marker='$\\bigtriangledown$',)
+ax.figure.savefig('./data/plot1.png', bbox_inches='tight')
+{% endhighlight %}
+
+## Show a KDE plot of the spatial distribution
+
+To get an impression on the spatial distribution, a KDE plot might help. For this we use the `kdeplot`-function from seaborn.
+
+{% highlight python %}
+fig, ax = plt.subplots(figsize=(10,10))
+
+plotter = tilemapbase.Plotter(extent, tilemapbase.tiles.build_OSM(), width=1000)
+plotter.plot(ax)
+ax.set_xlim(bounding_box[0]+2000, bounding_box[1])
+ax.set_ylim(bounding_box[2]+2000, bounding_box[3])
+city.plot(ax=ax, alpha=0.3, edgecolor="black", facecolor="white")
+sns.kdeplot(points["geometry"].x, points["geometry"].y, shade=True, alpha=0.5, cmap="viridis", shade_lowest=False)
+ax.figure.savefig('./data/plot2.png', bbox_inches='tight')
+{% endhighlight %}
+## Color the markers with the KDE information
+
+instead of drawing the KDE as a single shape, we can also color our points according to the density. For this we calculate the gaussian KDE separately and use the result as z-values for our plot. The markers can be changed to ones liking, for this case I settled with simple points.
+{% highlight python %}
+xy = np.vstack([points["geometry"].x,points["geometry"].y])
+z = gaussian_kde(xy)(xy)
+{% endhighlight %}
+{% highlight python %}
+fig, ax = plt.subplots(figsize=(10,10))
+
+plotter = tilemapbase.Plotter(extent, tilemapbase.tiles.build_OSM(), width=1000)
+plotter.plot(ax)
+ax.set_xlim(bounding_box[0]+2000, bounding_box[1])
+ax.set_ylim(bounding_box[2]+2000, bounding_box[3])
+city.plot(ax=ax, alpha=0.3, edgecolor="black", facecolor="white")
+ax.scatter(points["geometry"].x, points["geometry"].y, c=z, s=20, zorder=2, edgecolor='',  alpha=0.7)
+ax.figure.savefig('./data/plot3.png', bbox_inches='tight')
+{% endhighlight %}
+## Use more specific symbols as map markers
+
+If you want to change the markers in the map to more sophisticated ones, you could also use Font Awesome. Download the font from here and save it to `/resources/`. Edit the `symbols` dict to add symbols that might fit your subject, a cheat sheet for the unicode characters can be found on [the fontawesome website](https://fontawesome.com/cheatsheet). Just add a `\u` to any of the unicode characters.
+{% highlight python %}
+fp = FontProperties(fname=r"./resources/Font Awesome 5 Free-Solid-900.otf") 
+
+def get_marker(symbol):
+    v, codes = TextToPath().get_text_path(fp, symbol)
+    v = np.array(v)
+    mean = np.mean([np.max(v,axis=0), np.min(v, axis=0)], axis=0)
+    return Path(v-mean, codes, closed=False)
+
+symbols = dict(map = "\uf041", map_alt = "\uf3c5")
+{% endhighlight %}
+
+{% highlight python %}
+fig, ax = plt.subplots(figsize=(10,10))
+
+plotter = tilemapbase.Plotter(extent, tilemapbase.tiles.build_OSM(), width=1000)
+plotter.plot(ax)
+ax.set_xlim(bounding_box[0]+2000, bounding_box[1])
+ax.set_ylim(bounding_box[2]+2000, bounding_box[3])
+city.plot(ax=ax, alpha=0.3, edgecolor="black", facecolor="white")
+ax.scatter(points["geometry"].x, points["geometry"].y, c="red", s=35, zorder=2, edgecolor='',  alpha=0.5, marker=get_marker(symbols["map"]))
+ax.figure.savefig('./data/plot4.png', bbox_inches='tight')
+{% endhighlight %}
+{% highlight python %}
+fig, ax = plt.subplots(figsize=(10,10))
+
+plotter = tilemapbase.Plotter(extent, tilemapbase.tiles.build_OSM(), width=1000)
+plotter.plot(ax)
+ax.set_xlim(bounding_box[0]+2000, bounding_box[1])
+ax.set_ylim(bounding_box[2]+2000, bounding_box[3])
+city.plot(ax=ax, alpha=0.3, edgecolor="black", facecolor="white")
+ax.scatter(points["geometry"].x, points["geometry"].y, c=z, s=35, zorder=2, edgecolor='',  alpha=0.5, marker=get_marker(symbols["map"]))
+ax.figure.savefig('./data/plot5.png', bbox_inches='tight')
+{% endhighlight %}
