@@ -18,6 +18,8 @@ This tutorial teaches you how to plot map data on a background map of OpenStreet
 
 ![Map 3]({{site.baseurl}}/assets/img/post1/map3.jpg)
 
+
+
 ## Installation
 
 This tutorial requires the installation of multiple packages, a few of them are not installable for windows under pip. Therefore, the packages
@@ -134,6 +136,7 @@ ax1.figure.savefig('./data/plot1.png', bbox_inches='tight')
 
 ## Add a background map to the plot
 
+<img align="right" src="{{site.baseurl}}/assets/img/post1/map3.jpg">
 to get a nice background map, we need to find out all the boundaries of our data and save that for later plotting
 {% highlight python %}
 bounding_box = [points["geometry"].x.min(), points["geometry"].x.max(), points["geometry"].y.min(), points["geometry"].y.max()]
