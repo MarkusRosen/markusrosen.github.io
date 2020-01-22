@@ -3,7 +3,7 @@ layout: post
 title: Creating a map and KDE plot of points and polygons with Python
 date: 2020-01-22 16:46:20 +0300
 description:  The [tutorial is in form of a Jupyter # Add post description (optional)
-img:  assets/img/post1/map2.png
+img:  {{site.baseurl}}/assets/img/post1/map2.png
 ---
 
 
@@ -11,9 +11,9 @@ img:  assets/img/post1/map2.png
 
 This tutorial teaches you how to plot map data on a background map of OpenStreetMap using Python. The [tutorial is in form of a Jupyter Notebook](code.ipynb), therefore you either install Jupyter Lab or you can also copy the code into any other editor. The results should look like the following images:
 
-![Map 1](assets/img/post1/map1.png)
-![Map 2](assets/img/post1/map2.png)
-![Map 3](assets/img/post1/map3.png)
+![Map 1]({{site.baseurl}}/assets/img/post1/map1.png)
+![Map 2]({{site.baseurl}}/assets/img/post1/map2.png)
+![Map 3]({{site.baseurl}}/assets/img/post1/map3.png)
 
 ## Installation
 
