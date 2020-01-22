@@ -22,7 +22,7 @@ social-university: markus-rosenfelder
 discus-identifier:  # add your discus identifier
 
 # Tracker
-analytics: # Google Analytics
+analytics: UA-156692244-1
 
 # Build Settings
 markdown: kramdown
