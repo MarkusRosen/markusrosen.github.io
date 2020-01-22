@@ -2,8 +2,9 @@
 layout: post
 title: Creating a map and KDE plot of points and polygons with Python
 date: 2020-01-22 16:46:20 +0300
-description:  The [tutorial is in form of a Jupyter # Add post description (optional)
+description: This tutorial teaches you how to plot map data on a background map of OpenStreetMap using Python. 
 img:  /post1/map2.jpg
+tags: [Python, Maps, Matplotlib, Visualization, Pandas, Geodata] # add tag
 ---
 
 
@@ -11,8 +12,10 @@ img:  /post1/map2.jpg
 
 This tutorial teaches you how to plot map data on a background map of OpenStreetMap using Python. The [tutorial is in form of a Jupyter Notebook](code.ipynb), therefore you either install Jupyter Lab or you can also copy the code into any other editor. The results should look like the following images:
 
-![Map 1]({{site.baseurl}}/assets/img/post1/map1.jpg)
-![Map 2]({{site.baseurl}}/assets/img/post1/map2.jpg)
+| Example1 | Example2       | 
+|--------|------------|
+| ![Map 1]({{site.baseurl}}/assets/img/post1/map1.jpg)     | ![Map 2]({{site.baseurl}}/assets/img/post1/map2.jpg)  | 
+
 ![Map 3]({{site.baseurl}}/assets/img/post1/map3.jpg)
 
 ## Installation
@@ -168,6 +171,7 @@ city.plot(ax=ax, alpha=0.3, edgecolor="black", facecolor="white")
 sns.kdeplot(points["geometry"].x, points["geometry"].y, shade=True, alpha=0.5, cmap="viridis", shade_lowest=False)
 ax.figure.savefig('./data/plot2.png', bbox_inches='tight')
 {% endhighlight %}
+
 ## Color the markers with the KDE information
 
 instead of drawing the KDE as a single shape, we can also color our points according to the density. For this we calculate the gaussian KDE separately and use the result as z-values for our plot. The markers can be changed to ones liking, for this case I settled with simple points.
@@ -186,6 +190,7 @@ city.plot(ax=ax, alpha=0.3, edgecolor="black", facecolor="white")
 ax.scatter(points["geometry"].x, points["geometry"].y, c=z, s=20, zorder=2, edgecolor='',  alpha=0.7)
 ax.figure.savefig('./data/plot3.png', bbox_inches='tight')
 {% endhighlight %}
+
 ## Use more specific symbols as map markers
 
 If you want to change the markers in the map to more sophisticated ones, you could also use Font Awesome. Download the font from here and save it to `/resources/`. Edit the `symbols` dict to add symbols that might fit your subject, a cheat sheet for the unicode characters can be found on [the fontawesome website](https://fontawesome.com/cheatsheet). Just add a `\u` to any of the unicode characters.
