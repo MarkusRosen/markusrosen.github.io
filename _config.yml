@@ -1,4 +1,4 @@
-title: Hello, world! I'm Markus Rosenfelder
+title: Python Tutorials for Machine Learning, Deep Learning and Data Visualization
 description: > # this means to ignore newlines until "baseurl:"
   This blog is intended as a collection of Python tutorials with a focus on machine learning, deep learning and data analysis as well as data visualization.
 permalink: ':title/'
