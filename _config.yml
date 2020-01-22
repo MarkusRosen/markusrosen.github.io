@@ -10,12 +10,12 @@ site-twitter: #if your site has a twitter account, enter it here
 
 # Author Settings
 author: Markus Rosenfelder # add your name
-author-img: #david-freeman.jpg # add your photo
-about-author: much text here much text here much text here much text here much text here much text here much text here much text here# add description
-social-twitter: # add your Twitter handle
-social-facebook: # add your Facebook handle
-social-github: artemsheludko # add your Github handle
-social-linkedin: # add your Linkedin handle
+author-img: markus-rosenfelder.jpg #david-freeman.jpg # add your photo
+about-author: much text here much text here much text here much text here much text here much text here much text here much text here # add description
+#social-twitter: # add your Twitter handle
+#social-facebook: # add your Facebook handle
+social-github: MarkusRosen # add your Github handle
+social-linkedin: markus-rosenfelder-778b1b192 # add your Linkedin handle
 social-email: # add your Email address
 
 # Disqus
@@ -31,7 +31,7 @@ plugins:
   - jekyll-paginate
   - jemoji
 
-paginate: 8
+paginate: 12
 paginate_path: "/page/:num"
 
 exclude: ["node_modules", "gulpfile.js", "package.json", "yarn.lock"]
