@@ -3,7 +3,7 @@ layout: post
 title: Creating a map and KDE plot of points and polygons with Python
 date: 2020-01-22 16:46:20 +0300
 description:  The [tutorial is in form of a Jupyter # Add post description (optional)
-img:  # Add image post (optional)
+img:  assets/img/post1/map2.png
 ---
 
 
