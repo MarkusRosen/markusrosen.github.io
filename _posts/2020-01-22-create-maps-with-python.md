@@ -14,16 +14,16 @@ This tutorial teaches you how to plot map data on a background map of OpenStreet
 
 
 
-<div class="multiImage">
-    <div class="imgContainer">
+<div class="row">
+  <div class="column">
         <img src="{{site.baseurl}}/assets/img/post1/map1.jpg" height="200" width="200"/>
         <p>This is image 1</p>
     </div>
-    <div class="imgContainer">
+  <div class="column">
         <img class="middle-img" src="{{site.baseurl}}/assets/img/post1/map2.jpg" height="200" width="200"/>
         <p>This is image 2</p>
     </div>
-    <div class="imgContainer">
+ <div class="column">
          <img src="{{site.baseurl}}/assets/img/post1/map3.jpg" height="200" width="200"/>
         <p>This is image 3</p>
     </div>

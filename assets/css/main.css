@@ -1480,10 +1480,15 @@ a.newer-posts:hover {
   }
 }
 
-.multiImage .imgContainer{
-  float:left;
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 5px;
 }
 
-.no-wrap-text {
-  overflow: hidden;
+/* Clearfix (clear floats) */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
 }
