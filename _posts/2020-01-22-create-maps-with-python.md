@@ -48,7 +48,7 @@ pip install .\package_wheels_windows\GDAL-3.0.1-cp37-cp37m-win_amd64.whl
 pip install .\package_wheels_windows\Rtree-0.8.3-cp37-cp37m-win_amd64.whl
 pip install .\package_wheels_windows\Shapely-1.6.4.post2-cp37-cp37m-win_amd64.whl
 {% endhighlight %}
-</didv>After that, the rest of the packages should be easily installable by using the provided requirements.txt file:
+After that, the rest of the packages should be easily installable by using the provided requirements.txt file:
 
 {% highlight bash %}
 pip install -r requirements.txt
