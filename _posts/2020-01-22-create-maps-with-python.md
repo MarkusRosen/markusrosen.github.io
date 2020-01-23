@@ -28,7 +28,7 @@ imgContainer{
         <p>This is image 2</p>
     </div>
     <div class="imgContainer">
-         <img src="{{site.baseurl}}/assets/img/post1/map1.jpg" height"="200" width="200"/>
+         <img src="{{site.baseurl}}/assets/img/post1/map3.jpg" height="200" width="200"/>
         <p>This is image 3</p>
     </div>
 </div>
