@@ -13,12 +13,8 @@ tags: [Python, Maps, Matplotlib, Visualization, Pandas, Geodata] # add tag
 This tutorial teaches you how to plot map data on a background map of OpenStreetMap using Python. The [tutorial is in form of a Jupyter Notebook](code.ipynb), therefore you either install Jupyter Lab or you can also copy the code into any other editor. The results should look like the following images:
 
 
-<style>.
-imgContainer{
-    float:left;
-}
-</style>
-<div class="image123">
+
+<div class="multiImage">
     <div class="imgContainer">
         <img src="{{site.baseurl}}/assets/img/post1/map1.jpg" height="200" width="200"/>
         <p>This is image 1</p>
