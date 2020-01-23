@@ -1483,3 +1483,7 @@ a.newer-posts:hover {
 .multiImage .imgContainer{
   float:left;
 }
+
+.no-wrap-text {
+  overflow: hidden;
+}
