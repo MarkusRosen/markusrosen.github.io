@@ -3,7 +3,7 @@ layout: post
 title: Creating a map and KDE plot of points and polygons with Python
 date: 2020-01-22 16:46:20 +0300
 description: This tutorial teaches you how to plot map data on a background map of OpenStreetMap using Python. 
-img:  /post1/map2.jpg
+img:  /post1/teaser.jpg
 tags: [Python, Maps, Matplotlib, Visualization, Pandas, Geodata] # add tag
 ---
 
@@ -12,13 +12,26 @@ tags: [Python, Maps, Matplotlib, Visualization, Pandas, Geodata] # add tag
 
 This tutorial teaches you how to plot map data on a background map of OpenStreetMap using Python. The [tutorial is in form of a Jupyter Notebook](code.ipynb), therefore you either install Jupyter Lab or you can also copy the code into any other editor. The results should look like the following images:
 
-| Example1 | Example2       | 
-|--------|------------|
-| ![Map 1]({{site.baseurl}}/assets/img/post1/map1.jpg)     | ![Map 2]({{site.baseurl}}/assets/img/post1/map2.jpg)  | 
 
-![Map 3]({{site.baseurl}}/assets/img/post1/map3.jpg)
-
-
+<style>.
+imgContainer{
+    float:left;
+}
+</style>
+<div class="image123">
+    <div class="imgContainer">
+        <img src="{{site.baseurl}}/assets/img/post1/map1.jpg" height="200" width="200"/>
+        <p>This is image 1</p>
+    </div>
+    <div class="imgContainer">
+        <img class="middle-img" src="{{site.baseurl}}/assets/img/post1/map2.jpg"/ height="200" width="200"/>
+        <p>This is image 2</p>
+    </div>
+    <div class="imgContainer">
+         <img src="{{site.baseurl}}/assets/img/post1/map1.jpg height="200" width="200"/>
+        <p>This is image 3</p>
+    </div>
+</div>
 
 ## Installation
 
