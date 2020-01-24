@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Creating a map and KDE plot of points and polygons with Python
+title: Create Bautiful Maps with Python
 date: 2020-01-22 16:46:20 +0300
 description: This tutorial teaches you how to plot map data on a background map of OpenStreetMap using Python. 
 img:  /post1/teaser.jpg
@@ -9,30 +9,20 @@ tags: [Python, Maps, Matplotlib, Visualization, Pandas, Geodata]
 
 ## ! add in updated code from colab and the other notebook !
 
+This tutorial teaches you how to plot map data on a background map of OpenStreetMap using Python. As a data source we use points of interest (POI) information about the city of Amsterdam, specifically we want to plot the restaurants and their spatial density on a map. We also use the a polygon-shape file of the city to remove any points that lie outside the city boarders. The results of this tutorial should look like the following images:
 
-This tutorial teaches you how to plot map data on a background map of OpenStreetMap using Python. The [tutorial is in form of a Jupyter Notebook](code.ipynb), therefore you either install Jupyter Lab or you can also copy the code into any other editor. The results should look like the following images:
-
-
-
-<div class="row">
-  <div class="column">
-        <img src="{{site.baseurl}}/assets/img/post1/map1.jpg" height="200" width="200"/>
-        <p>This is image 1</p>
-    </div>
-  <div class="column">
-        <img class="middle-img" src="{{site.baseurl}}/assets/img/post1/map2.jpg" height="200" width="200"/>
-        <p>This is image 2</p>
-    </div>
- <div class="column">
-         <img src="{{site.baseurl}}/assets/img/post1/map3.jpg" height="200" width="200"/>
-        <p>This is image 3</p>
-    </div>
-</div>
+[Two example maps from this tutorial.](../assets/img/post1/merged_results.jpg)
 
 
 ## Installation
 
-This tutorial requires the installation of multiple packages, a few of them are not installable for windows under pip. Therefore, the packages
+This tutorial requires the installation of multiple packages, a few of them are not installable for Windows under `PyPI`. You can start by cloning the GitHub repo for this tutorial:
+
+{% highlight bash %}
+git clone https://github.com/InformationSystemsFreiburg/map_creation_amsterdam_python
+{% endhighlight %}
+
+The following packages have to be installed as wheels and are contained in the `package_wheels_windows` folder:
 
 {% highlight bash %}
 FionaGDAL
@@ -48,13 +38,15 @@ pip install .\package_wheels_windows\GDAL-3.0.1-cp37-cp37m-win_amd64.whl
 pip install .\package_wheels_windows\Rtree-0.8.3-cp37-cp37m-win_amd64.whl
 pip install .\package_wheels_windows\Shapely-1.6.4.post2-cp37-cp37m-win_amd64.whl
 {% endhighlight %}
-After that, the rest of the packages should be easily installable by using the provided requirements.txt file:
+After that, the rest of the packages should be easily installable by using the provided `requirements.txt` file:
 
 {% highlight bash %}
 pip install -r requirements.txt
 {% endhighlight %}
 
 ## Importing packages
+
+We need to import quite a few packages before we can start:
 
 {% highlight python %}
 import numpy as np 
@@ -80,15 +72,18 @@ Download the following data and save extract it into the ./data folder of this p
 - http://download.geofabrik.de/europe/netherlands/noord-holland-latest-free.shp.zip
 - https://maps.amsterdam.nl/open_geodata/geojson.php?KAARTLAAG=GEBIED_STADSDELEN&THEMA=gebiedsindeling
 
+You also have to unzip the `noord-holland-latest-free.shp.zip`.
+
 ## Loading and preprocessing the data
 
-Load the POI data:
+Load the POI data. For the plotting package `tilemapbase` our data needs to be in the coordinate reference system (CRS) `EPSG:3857`, therefore we have to convert our location data accordingly.
 {% highlight python %}
 points = gpd.read_file("./data/gis_osm_pois_free_1.shp")
 points = points.to_crs({"init": "EPSG:3857"})
 {% endhighlight %}
 
-filter the data for restaurants (or any other POI category)
+Filter the data for restaurants (or any other POI category):
+
 {% highlight python %}
 points = points[points["fclass"] == "restaurant"]
 {% endhighlight %}
@@ -105,7 +100,7 @@ print(points)
 | 37100  | 7126562155 | 2301   | restaurant | Duinberk           | POINT (522497.422 6928134.759) |
 | 37111  | 7137254485 | 2301   | restaurant | Vleesch noch Visch | POINT (542280.944 6869060.363) |
 
-load the shapefile for the city of amsterdam
+Looks good so far! Now to load the shapefile for the city of Amsterdam in a similar manner as before:
 {% highlight python %}
 city = gpd.read_file("./data/geojson.json")
 city = city.to_crs({"init": "EPSG:3857"})
@@ -125,12 +120,12 @@ print(city)
 | 6              | N         | Noord      | 63828800 | POLYGON ((565410.507 6870704.099, 564865.041 6... |
 | 7              | T         | Zuidoost   | 22113700 | POLYGON ((558996.500 6854997.221, 558987.372 6... |
 
-perform a spatial join between the points and polygons and filter out any points that did not match with the polygons
+This data looks fine as well! Now we need to remove any points that lie outside the city boarders. For this, we perform a spatial join between the points and polygons and filter out any points that did not match with the polygons. After the join, we drop any points that have not gained an `ìndex` from the polygons, which means the specific points lie outside the city boarders:
 {% highlight python %}
 points = gpd.sjoin(points, city, how="left")
 points = points.dropna(subset=["index_right"])
 {% endhighlight %}
-plot both data sets to see if the spatial join was performed correctly
+With spatial data we always have the luxuary to plot the data tosee if our preprocessing is done correctly:
 {% highlight python %}
 # edit the figure size however you need to
 plt.figure(num=None, figsize=(10,10), dpi=80, facecolor='w', edgecolor='k')
