@@ -135,7 +135,7 @@ city.plot(ax=ax1, alpha=0.1, edgecolor="black", facecolor="white")
 points.plot(ax=ax1, alpha = 0.1, color="red", marker='$\\bigtriangledown$',)
 ax1.figure.savefig('./data/plot1.png', bbox_inches='tight')
 {% endhighlight %}
-[First map](/assets/img/post1/plot1.jpg)
+![First map](/assets/img/post1/plot1.jpg)
 
 The data seems to be joined as expected! But this map still looks quite ugly, so we should improve it by adding a basemap.
 
@@ -162,7 +162,7 @@ city.plot(ax=ax, alpha=0.3, edgecolor="black", facecolor="white")
 points.plot(ax=ax, alpha = 0.4, color="red", marker='$\\bigtriangledown$',)
 ax.figure.savefig('./data/plot1.png', bbox_inches='tight')
 {% endhighlight %}
-[First map](/assets/img/post1/plot2.jpg)
+![First map](/assets/img/post1/plot2.jpg)
 The map looks great! We want to show the data in a few different kinds of plots, but since most code will be reused, we might as well create a small function:
 {% highlight python %}
 def plot_map(fig, ax, points_plot, polygons_plot, file_name):
@@ -177,19 +177,15 @@ def plot_map(fig, ax, points_plot, polygons_plot, file_name):
 {% endhighlight %}
 ## Show a KDE plot of the spatial distribution
 
-To get an impression on the spatial distribution, a KDE plot might help. For this we use the `kdeplot`-function from seaborn.
+To get an impression on the spatial distribution, a KDE plot might help. For this we use the `kdeplot`-function from `seaborn`.
 
 {% highlight python %}
 fig, ax = plt.subplots(figsize=(10,10))
-
-plotter = tilemapbase.Plotter(extent, tilemapbase.tiles.build_OSM(), width=1000)
-plotter.plot(ax)
-ax.set_xlim(bounding_box[0]+2000, bounding_box[1])
-ax.set_ylim(bounding_box[2]+2000, bounding_box[3])
-city.plot(ax=ax, alpha=0.3, edgecolor="black", facecolor="white")
-sns.kdeplot(points["geometry"].x, points["geometry"].y, shade=True, alpha=0.5, cmap="viridis", shade_lowest=False)
-ax.figure.savefig('./data/plot2.png', bbox_inches='tight')
+density_plot = sns.kdeplot(points["geometry"].x, points["geometry"].y, shade=True, alpha=0.5, cmap="viridis", shade_lowest=False, zorder=3)
+plot_map(fig, ax, density_plot, city_boarders, "plot3")
 {% endhighlight %}
+
+![Second map](/assets/img/post1/plot3.jpg)
 
 ## Color the markers with the KDE information
 
@@ -200,15 +196,11 @@ z = gaussian_kde(xy)(xy)
 {% endhighlight %}
 {% highlight python %}
 fig, ax = plt.subplots(figsize=(10,10))
-
-plotter = tilemapbase.Plotter(extent, tilemapbase.tiles.build_OSM(), width=1000)
-plotter.plot(ax)
-ax.set_xlim(bounding_box[0]+2000, bounding_box[1])
-ax.set_ylim(bounding_box[2]+2000, bounding_box[3])
-city.plot(ax=ax, alpha=0.3, edgecolor="black", facecolor="white")
-ax.scatter(points["geometry"].x, points["geometry"].y, c=z, s=20, zorder=2, edgecolor='',  alpha=0.7)
-ax.figure.savefig('./data/plot3.png', bbox_inches='tight')
+points_density = ax.scatter(points["geometry"].x, points["geometry"].y, c=z, s=20, edgecolor='',  alpha=0.7, zorder=3)
+plot_map(fig, ax, points_density, city_boarders, "plot4")
 {% endhighlight %}
+
+![Third map](/assets/img/post1/plot4.jpg)
 
 ## Use more specific symbols as map markers
 
@@ -227,23 +219,16 @@ symbols = dict(map = "\uf041", map_alt = "\uf3c5")
 
 {% highlight python %}
 fig, ax = plt.subplots(figsize=(10,10))
-
-plotter = tilemapbase.Plotter(extent, tilemapbase.tiles.build_OSM(), width=1000)
-plotter.plot(ax)
-ax.set_xlim(bounding_box[0]+2000, bounding_box[1])
-ax.set_ylim(bounding_box[2]+2000, bounding_box[3])
-city.plot(ax=ax, alpha=0.3, edgecolor="black", facecolor="white")
-ax.scatter(points["geometry"].x, points["geometry"].y, c="red", s=35, zorder=2, edgecolor='',  alpha=0.5, marker=get_marker(symbols["map"]))
-ax.figure.savefig('./data/plot4.png', bbox_inches='tight')
+points_with_markers = ax.scatter(points["geometry"].x, points["geometry"].y, c="red", s=35, zorder=2, edgecolor='',  alpha=0.5, marker=get_marker(symbols["map"]))
+plot_map(fig, ax, points_with_markers, city_boarders, "plot5")
 {% endhighlight %}
+![Fourth map](/assets/img/post1/plot5.jpg)
+
+
+
 {% highlight python %}
 fig, ax = plt.subplots(figsize=(10,10))
-
-plotter = tilemapbase.Plotter(extent, tilemapbase.tiles.build_OSM(), width=1000)
-plotter.plot(ax)
-ax.set_xlim(bounding_box[0]+2000, bounding_box[1])
-ax.set_ylim(bounding_box[2]+2000, bounding_box[3])
-city.plot(ax=ax, alpha=0.3, edgecolor="black", facecolor="white")
-ax.scatter(points["geometry"].x, points["geometry"].y, c=z, s=35, zorder=2, edgecolor='',  alpha=0.5, marker=get_marker(symbols["map"]))
-ax.figure.savefig('./data/plot5.png', bbox_inches='tight')
+points_with_markers_density = ax.scatter(points["geometry"].x, points["geometry"].y, c=z, s=45, zorder=2, edgecolor='',  alpha=0.5, marker=get_marker(symbols["map"]))
+plot_map(fig, ax,points_with_markers_density, city_boarders, "plot6")
 {% endhighlight %}
+![Fifth map](/assets/img/post1/plot6.jpg)
