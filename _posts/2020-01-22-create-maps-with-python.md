@@ -7,9 +7,9 @@ img:  /post1/teaser.jpg
 tags: [Python, Maps, Matplotlib, Visualization, Pandas, Geodata] 
 ---
 
-This tutorial teaches you how to plot map data on a background map of OpenStreetMap using Python. As a data source we use points of interest (POI) information about the city of Amsterdam, specifically we want to plot the restaurants and their spatial density on a map. We also use the a polygon-shape file of the city to remove any points that lie outside the city boarders. The results of this tutorial should look like the following images:
+This tutorial teaches you how to plot map data on a background map of OpenStreetMap using Python. So far, I have most often used `QGIS` or `R` for my mapping needs, but since I spend around 99% of my progrmaming time with Python, I was wondering, if there is a simple way to create good looking maps through Python. As a data source we use points of interest (POI) information about the city of Amsterdam, specifically we want to plot the restaurants and their spatial density on a map. We also use the a polygon-shape file of the city to remove any points that lie outside the city boarders. The results of this tutorial should look like the following images:
 
-[Two example maps from this tutorial.](../assets/img/post1/merged_results.jpg)
+![Two example maps from this tutorial.](../assets/img/post1/merged_results.jpg)
 
 
 ## Installation
@@ -189,7 +189,7 @@ plot_map(fig, ax, density_plot, city_boarders, "plot3")
 
 ## Color the markers with the KDE information
 
-instead of drawing the KDE as a single shape, we can also color our points according to the density. For this we calculate the gaussian KDE separately and use the result as z-values for our plot. The markers can be changed to ones liking, for this case I settled with simple points.
+Instead of drawing the KDE as a single shape, we can also color our points according to the density. For this we calculate the gaussian KDE separately and use the result as z-values for our plot. The markers can be changed to ones liking, for this case I settled with simple points:
 {% highlight python %}
 xy = np.vstack([points["geometry"].x,points["geometry"].y])
 z = gaussian_kde(xy)(xy)
@@ -209,6 +209,7 @@ If you want to change the markers in the map to more sophisticated ones, you cou
 fp = FontProperties(fname=r"./resources/Font Awesome 5 Free-Solid-900.otf") 
 
 def get_marker(symbol):
+    """Extracts the symbol from the font."""
     v, codes = TextToPath().get_text_path(fp, symbol)
     v = np.array(v)
     mean = np.mean([np.max(v,axis=0), np.min(v, axis=0)], axis=0)
@@ -216,14 +217,14 @@ def get_marker(symbol):
 
 symbols = dict(map = "\uf041", map_alt = "\uf3c5")
 {% endhighlight %}
-
+We can now use these markers with the command `get_marker(symbols["map"])`
 {% highlight python %}
 fig, ax = plt.subplots(figsize=(10,10))
 points_with_markers = ax.scatter(points["geometry"].x, points["geometry"].y, c="red", s=35, zorder=2, edgecolor='',  alpha=0.5, marker=get_marker(symbols["map"]))
 plot_map(fig, ax, points_with_markers, city_boarders, "plot5")
 {% endhighlight %}
 ![Fourth map](/assets/img/post1/plot5.jpg)
-
+This looks pretty good! And of course we can also combine the densty from before to make the final map:
 
 
 {% highlight python %}
@@ -232,3 +233,4 @@ points_with_markers_density = ax.scatter(points["geometry"].x, points["geometry"
 plot_map(fig, ax,points_with_markers_density, city_boarders, "plot6")
 {% endhighlight %}
 ![Fifth map](/assets/img/post1/plot6.jpg)
+This concludes this short tutorial into mapping with Python. 
