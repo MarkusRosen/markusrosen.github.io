@@ -7,8 +7,6 @@ img:  /post1/teaser.jpg
 tags: [Python, Maps, Matplotlib, Visualization, Pandas, Geodata] 
 ---
 
-## ! add in updated code from colab and the other notebook !
-
 This tutorial teaches you how to plot map data on a background map of OpenStreetMap using Python. As a data source we use points of interest (POI) information about the city of Amsterdam, specifically we want to plot the restaurants and their spatial density on a map. We also use the a polygon-shape file of the city to remove any points that lie outside the city boarders. The results of this tutorial should look like the following images:
 
 [Two example maps from this tutorial.](../assets/img/post1/merged_results.jpg)
@@ -69,8 +67,8 @@ shapely.speedups.enable()
 
 Download the following data and save extract it into the ./data folder of this project:
 
-- http://download.geofabrik.de/europe/netherlands/noord-holland-latest-free.shp.zip
-- https://maps.amsterdam.nl/open_geodata/geojson.php?KAARTLAAG=GEBIED_STADSDELEN&THEMA=gebiedsindeling
+- [Points of interest data from North Holland](http://download.geofabrik.de/europe/netherlands/noord-holland-latest-free.shp.zip)
+- [City boundaries as GeoJSON](https://maps.amsterdam.nl/open_geodata/geojson.php?KAARTLAAG=GEBIED_STADSDELEN&THEMA=gebiedsindeling)
 
 You also have to unzip the `noord-holland-latest-free.shp.zip`.
 
@@ -137,11 +135,13 @@ city.plot(ax=ax1, alpha=0.1, edgecolor="black", facecolor="white")
 points.plot(ax=ax1, alpha = 0.1, color="red", marker='$\\bigtriangledown$',)
 ax1.figure.savefig('./data/plot1.png', bbox_inches='tight')
 {% endhighlight %}
+[First map](/assets/img/post1/plot1.jpg)
+
+The data seems to be joined as expected! But this map still looks quite ugly, so we should improve it by adding a basemap.
 
 ## Add a background map to the plot
 
-<img align="right" src="{{site.baseurl}}/assets/img/post1/map3.jpg">
-to get a nice background map, we need to find out all the boundaries of our data and save that for later plotting
+To get a nice background map, we need to find out all the boundaries of our data and save that for later plotting
 {% highlight python %}
 bounding_box = [points["geometry"].x.min(), points["geometry"].x.max(), points["geometry"].y.min(), points["geometry"].y.max()]
 {% endhighlight %}
@@ -151,9 +151,9 @@ tilemapbase.start_logging()
 tilemapbase.init(create=True)
 extent = tilemapbase.extent_from_frame(city, buffer = 25)
 {% endhighlight %}
+OK, now we can continue with the plotting. We need to set the limits of the axes according to the bounding boxes. For zooming, we can either add or subtract frrom the first values in `set_xlim` and `set_ylim`.
 {% highlight python %}
 fig, ax = plt.subplots(figsize=(10,10))
-
 plotter = tilemapbase.Plotter(extent, tilemapbase.tiles.build_OSM(), width=1000)
 plotter.plot(ax)
 ax.set_xlim(bounding_box[0]+2000, bounding_box[1])
@@ -162,7 +162,19 @@ city.plot(ax=ax, alpha=0.3, edgecolor="black", facecolor="white")
 points.plot(ax=ax, alpha = 0.4, color="red", marker='$\\bigtriangledown$',)
 ax.figure.savefig('./data/plot1.png', bbox_inches='tight')
 {% endhighlight %}
-
+[First map](/assets/img/post1/plot2.jpg)
+The map looks great! We want to show the data in a few different kinds of plots, but since most code will be reused, we might as well create a small function:
+{% highlight python %}
+def plot_map(fig, ax, points_plot, polygons_plot, file_name):
+    """A short helper function that takes points and polygons as input and creates a plot with a basemap."""
+    plotter = tilemapbase.Plotter(extent, tilemapbase.tiles.build_OSM(), width=1000)
+    plotter.plot(ax)
+    ax.set_xlim(bounding_box[0]+2000, bounding_box[1])
+    ax.set_ylim(bounding_box[2]+2000, bounding_box[3])
+    polygons_plot
+    points_plot
+    ax.figure.savefig(f'./data/{file_name}.png', bbox_inches='tight')
+{% endhighlight %}
 ## Show a KDE plot of the spatial distribution
 
 To get an impression on the spatial distribution, a KDE plot might help. For this we use the `kdeplot`-function from seaborn.
