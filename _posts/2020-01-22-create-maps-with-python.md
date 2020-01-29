@@ -1,26 +1,26 @@
 ---
 layout: post
-title: Create Bautiful Maps with Python
+title: Create Beautiful Maps with Python
 date: 2020-01-22 16:46:20 +0300
 description: This tutorial teaches you how to plot map data on a background map of OpenStreetMap using Python. 
 img:  /post1/teaser.jpg
 tags: [Python, Maps, Matplotlib, Visualization, Pandas, Geodata] 
 ---
 
-This tutorial teaches you how to plot map data on a background map of OpenStreetMap using Python. So far, I have most often used `QGIS` or `R` for my mapping needs, but since I spend around 99% of my progrmaming time with Python, I was wondering, if there is a simple way to create good looking maps through Python. As a data source we use points of interest (POI) information about the city of Amsterdam, specifically we want to plot the restaurants and their spatial density on a map. We also use the a polygon-shape file of the city to remove any points that lie outside the city boarders. The results of this tutorial should look like the following images:
+This tutorial teaches you how to plot map data on a background map of OpenStreetMap using Python. So far, I have most often used `QGIS` or `R` for my mapping needs, but since I spend around 99% of my programming time with Python, I was wondering if there is a simple way to create good looking maps through Python. As a data source, we use points of interest (POI) information about the city of Amsterdam. Specifically, we want to plot the restaurants and their spatial density on a map. We also use a polygon-shape file of the city to remove any points that lie outside the city borders. The results of this tutorial should look like the following images:
 
 ![Two example maps from this tutorial.](../assets/img/post1/merged_results.jpg)
 
 
 ## Installation
 
-This tutorial requires the installation of multiple packages, a few of them are not installable for Windows under `PyPI`. You can start by cloning the GitHub repo for this tutorial:
+This tutorial requires the installation of multiple packages; a few of them are not installable for Windows under `PyPI`. You can start by cloning the GitHub repo for this tutorial:
 
 {% highlight bash %}
 git clone https://github.com/InformationSystemsFreiburg/map_creation_amsterdam_python
 {% endhighlight %}
 
-The following packages have to be installed as wheels and are contained in the `package_wheels_windows` folder:
+The following packages you need to install as wheels. You find them in the `package_wheels_windows` folder:
 
 {% highlight bash %}
 FionaGDAL
@@ -58,14 +58,14 @@ from matplotlib.textpath import TextToPath
 import tilemapbase
 import warnings
 import matplotlib.cbook
-warnings.filterwarnings("ignore",category=matplotlib.cbook.mplDeprecation)
+warnings.filterwarnings("ignore", category=matplotlib.cbook.mplDeprecation)
 
 import seaborn as sns
 import shapely.speedups
 shapely.speedups.enable()
 {% endhighlight %}
 
-Download the following data and save extract it into the ./data folder of this project:
+Download the following data and extract it into the ./data folder of this project:
 
 - [Points of interest data from North Holland](http://download.geofabrik.de/europe/netherlands/noord-holland-latest-free.shp.zip)
 - [City boundaries as GeoJSON](https://maps.amsterdam.nl/open_geodata/geojson.php?KAARTLAAG=GEBIED_STADSDELEN&THEMA=gebiedsindeling)
@@ -137,7 +137,7 @@ ax1.figure.savefig('./data/plot1.png', bbox_inches='tight')
 {% endhighlight %}
 ![First map](/assets/img/post1/plot1.jpg)
 
-The data seems to be joined as expected! But this map still looks quite ugly, so we should improve it by adding a basemap.
+The data seems has been joined as expected! But this map still looks quite ugly, so we should improve it by adding a base map.
 
 ## Add a background map to the plot
 
@@ -163,7 +163,9 @@ points.plot(ax=ax, alpha = 0.4, color="red", marker='$\\bigtriangledown$',)
 ax.figure.savefig('./data/plot1.png', bbox_inches='tight')
 {% endhighlight %}
 ![First map](/assets/img/post1/plot2.jpg)
+
 The map looks great! We want to show the data in a few different kinds of plots, but since most code will be reused, we might as well create a small function:
+
 {% highlight python %}
 def plot_map(fig, ax, points_plot, polygons_plot, file_name):
     """A short helper function that takes points and polygons as input and creates a plot with a basemap."""
@@ -177,11 +179,19 @@ def plot_map(fig, ax, points_plot, polygons_plot, file_name):
 {% endhighlight %}
 ## Show a KDE plot of the spatial distribution
 
-To get an impression on the spatial distribution, a KDE plot might help. For this we use the `kdeplot`-function from `seaborn`.
+If we want to get an impression on the spatial distribution, a KDE plot might help. For this, we use the `kdeplot`-function from `seaborn`.
 
 {% highlight python %}
 fig, ax = plt.subplots(figsize=(10,10))
-density_plot = sns.kdeplot(points["geometry"].x, points["geometry"].y, shade=True, alpha=0.5, cmap="viridis", shade_lowest=False, zorder=3)
+density_plot = sns.kdeplot(
+                    points["geometry"].x, 
+                    points["geometry"].y, 
+                    shade=True, 
+                    alpha=0.5, 
+                    cmap="viridis", 
+                    shade_lowest=False, 
+                    zorder=3
+                    )
 plot_map(fig, ax, density_plot, city_boarders, "plot3")
 {% endhighlight %}
 
@@ -196,7 +206,15 @@ z = gaussian_kde(xy)(xy)
 {% endhighlight %}
 {% highlight python %}
 fig, ax = plt.subplots(figsize=(10,10))
-points_density = ax.scatter(points["geometry"].x, points["geometry"].y, c=z, s=20, edgecolor='',  alpha=0.7, zorder=3)
+points_density = ax.scatter(
+                        points["geometry"].x, 
+                        points["geometry"].y, 
+                        c=z, 
+                        s=20, 
+                        edgecolor='',  
+                        alpha=0.7, 
+                        zorder=3
+                        )
 plot_map(fig, ax, points_density, city_boarders, "plot4")
 {% endhighlight %}
 
@@ -204,7 +222,7 @@ plot_map(fig, ax, points_density, city_boarders, "plot4")
 
 ## Use more specific symbols as map markers
 
-If you want to change the markers in the map to more sophisticated ones, you could also use Font Awesome. Download the font from here and save it to `/resources/`. Edit the `symbols` dict to add symbols that might fit your subject, a cheat sheet for the unicode characters can be found on [the fontawesome website](https://fontawesome.com/cheatsheet). Just add a `\u` to any of the unicode characters.
+If you want to change the markers in the map to more sophisticated ones, you could also use Font Awesome. Download the font from here and save it to `/resources/`. Edit the `symbols` dict to add symbols that might fit your subject, a cheat sheet for the Unicode characters you can find on [the fontawesome website](https://fontawesome.com/cheatsheet). Just add a `\u` to any of the Unicode characters.
 {% highlight python %}
 fp = FontProperties(fname=r"./resources/Font Awesome 5 Free-Solid-900.otf") 
 
@@ -220,17 +238,37 @@ symbols = dict(map = "\uf041", map_alt = "\uf3c5")
 We can now use these markers with the command `get_marker(symbols["map"])`
 {% highlight python %}
 fig, ax = plt.subplots(figsize=(10,10))
-points_with_markers = ax.scatter(points["geometry"].x, points["geometry"].y, c="red", s=35, zorder=2, edgecolor='',  alpha=0.5, marker=get_marker(symbols["map"]))
+points_with_markers = ax.scatter(
+                            points["geometry"].x, 
+                            points["geometry"].y, 
+                            c="red", 
+                            s=35, 
+                            zorder=2, 
+                            edgecolor='', 
+                            alpha=0.5, 
+                            marker=get_marker(symbols["map"])
+                            )
 plot_map(fig, ax, points_with_markers, city_boarders, "plot5")
 {% endhighlight %}
 ![Fourth map](/assets/img/post1/plot5.jpg)
+
 This looks pretty good! And of course we can also combine the densty from before to make the final map:
 
 
 {% highlight python %}
 fig, ax = plt.subplots(figsize=(10,10))
-points_with_markers_density = ax.scatter(points["geometry"].x, points["geometry"].y, c=z, s=45, zorder=2, edgecolor='',  alpha=0.5, marker=get_marker(symbols["map"]))
+points_with_markers_density = ax.scatter(
+                                    points["geometry"].x, 
+                                    points["geometry"].y,
+                                    c=z, 
+                                    s=45, 
+                                    zorder=2, 
+                                    edgecolor='',  
+                                    alpha=0.5, 
+                                    marker=get_marker(symbols["map"])
+                                    )
 plot_map(fig, ax,points_with_markers_density, city_boarders, "plot6")
 {% endhighlight %}
 ![Fifth map](/assets/img/post1/plot6.jpg)
-This concludes this short tutorial into mapping with Python. 
+
+With this last map, we conclude this short tutorial into mapping with Python.
