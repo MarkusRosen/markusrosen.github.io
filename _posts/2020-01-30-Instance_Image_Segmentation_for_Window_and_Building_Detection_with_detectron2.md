@@ -887,4 +887,4 @@ from google.colab import files
 files.download('/content/predictions.zip')
 ```
 
-Here ends this first introduction on how to use `detectron2`. Note: This tutorial is also available as a [shareble Google Colab Notebook](https://colab.research.google.com/drive/1hxmdsLmqI6LR2v5SqHzH8oILXVI4eIzR).
+Here ends this first introduction on how to use `detectron2`. Note: This tutorial is also available as a [shareable Google Colab Notebook](https://colab.research.google.com/drive/1hxmdsLmqI6LR2v5SqHzH8oILXVI4eIzR).
