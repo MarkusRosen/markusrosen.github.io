@@ -1,13 +1,13 @@
 ---
 layout: post
-title: Detectron2 - How to use Instance Image Segmentation for Window and Building Recognition
+title: Detectron2 - How to use Instance Image Segmentation for Building Recognition
 date: 2020-01-30 18:53:30 +0300
 description: This tutorial teaches you how to implement instance image segmentation with a concrete example. 
-img:  /post2/_IiT38b3e9Sy5Pq1B49p4s_prediction.jpg
+img:  /post2/teaser.jpg
 tags: [PyTorch, Deep Learning, Convolutional Neural Networks, Object Recognition, NumPy, Visualization] 
 ---
 
-I have written this tutorial for researchers that have fundamental machine learning and Python programming skills that want to implement instance image segmentation for further use in their models.  `detectron2` is still under substantial development and as of January 2020 usable with Windows without some code changes [that I explain in more detail on this GitHub Repository](https://github.com/InformationSystemsFreiburg/image_segmentation_japan). Instead of using `detectron2` on a local machine, you can also use Google Colab and a free GPU from Google for your models. The GPU is either an Nvidia K80, T4, P4, or P100, all of which are powerful enough to train `detectron2` models. **Important note: Computation time on Google Colab is limited to 12 hours**.
+I have written this tutorial for researchers that have fundamental machine learning and Python programming skills that want to implement instance image segmentation for further use in their urban energy simulation models.  `detectron2` is still under substantial development and as of January 2020 usable with Windows without some code changes [that I explain in more detail on this GitHub Repository](https://github.com/InformationSystemsFreiburg/image_segmentation_japan). Instead of using `detectron2` on a local machine, you can also use Google Colab and a free GPU from Google for your models. The GPU is either an Nvidia K80, T4, P4, or P100, all of which are powerful enough to train `detectron2` models. **Important note: Computation time on Google Colab is limited to 12 hours**.
 
 The first part of this tutorials is based on the beginners' tutorial of `detectron2`, the second part and third part come from the research stay of [Markus Rosenfelder](https://www.is.uni-freiburg.de/mitarbeiter-en/team/markus-rosenfelder) at [GCP NIES](https://www.cger.nies.go.jp/gcp/) in Tsukuba.
 
