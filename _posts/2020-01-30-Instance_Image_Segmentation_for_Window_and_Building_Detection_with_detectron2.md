@@ -832,275 +832,47 @@ print(datetime.now() - start)
 df
 ```
 
+### Results
+
 ```bash
     100%|██████████| 49/49 [02:06<00:00,  2.58s/it]
 
     0:02:06.347280
-```    
+```
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+|file_name|id|tagged_id|tagged_id_coords|category|pixel_area|building_area_perc_of_image|window_percentage|
+|--- |--- |--- |--- |--- |--- |--- |--- |
+|P2VBr3KZuYBOF1QA-DIRrQ.jpg|b_0|0|0|1|325987|0.157208|0.031940|
+|P8eVIvM6OscXlR5SR6Z05w.jpg|b_0|0|0|1|502350|0.242260|0.108572|
+|p8KcAK9bYM1MhB6m1LZBzA.jpg|b_0|0|0|1|203559|0.098167|0.015111|
+|_6qHHdUHjbyLGdwqfTZgRA.jpg|b_0|0|0|1|491739|0.237143|0.020932|
+|Pb73PiqChAM_VjnM6-mByA.jpg|b_0|0|0|1|376957|0.181789|0.011261|
+|Pb73PiqChAM_VjnM6-mByA.jpg|b_1|0|0|1|178937|0.086293|0.103031|
+|PAJ-MaBAsXToem1f8tQXQA.jpg|b_0|0|0|1|2656813|0.844578|0.040326|
+|_FczOQH2Gps-DKWQb9aLlw.jpg|b_0|id_1|[319, 507]|1|402790|0.194247|0.133335|
+|_YBDP9H7rtRL8ooFlNKGew.jpg|b_0|0|0|1|328583|0.158460|0.133817|
+|_ObTdbCdQQTHL1kYnT7dyg.jpg|b_0|0|0|1|81129|0.025790|0.093025|
+|_40EqDxSm7VfFa3loCybQA.jpg|b_0|0|0|1|476829|0.229952|0.038534|
+|p0BLyIbSaWEhftL1Cuasaw.jpg|b_0|0|0|1|760542|0.241770|0.027758|
+|p9LjGq-iOOegdkOiA4JRPQ.jpg|b_0|0|0|1|132229|0.063768|0.113470|
+|p4zxq9hYv_OWvCwoy83HJA.jpg|b_0|0|0|1|145565|0.070199|0.006808|
+|p4w0rP6eCcUI3w3htiMm3g.jpg|b_0|0|0|1|704624|0.339807|0.006323|
+|p4w0rP6eCcUI3w3htiMm3g.jpg|b_1|0|0|1|216708|0.104508|0.045554|
+|p4zCd5huZE35tEWakIhZv6.jpg|b_0|0|0|1|163759|0.078973|0.119212|
+|p4zCd5huZE35tEWakIhZv6.jpg|b_1|0|0|1|371558|0.179185|0.000000|
+|_qOoozLWFdlXfwI4lbFKCw.jpg|b_0|0|0|1|214753|0.103565|0.000000|
+|p7Mu8DjZsfEomtAVPDy0hw.jpg|b_0|0|0|1|247912|0.119556|0.054652|
+|p7Mu8DjZsfEomtAVPDy0hw.jpg|b_1|0|0|1|369672|0.178275|0.031777|
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
+The table shows us the window percentage per building with an identifier for the image as well as an ID if we tagged the building in the preprocessing of the images.
 
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>file_name</th>
-      <th>id</th>
-      <th>tagged_id</th>
-      <th>tagged_id_coords</th>
-      <th>category</th>
-      <th>pixel_area</th>
-      <th>building_area_perc_of_image</th>
-      <th>window_percentage</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>50</th>
-      <td>P2VBr3KZuYBOF1QA-DIRrQ.jpg</td>
-      <td>b_0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>325987</td>
-      <td>0.157208</td>
-      <td>0.031940</td>
-    </tr>
-    <tr>
-      <th>87</th>
-      <td>P8eVIvM6OscXlR5SR6Z05w.jpg</td>
-      <td>b_0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>502350</td>
-      <td>0.242260</td>
-      <td>0.108572</td>
-    </tr>
-    <tr>
-      <th>183</th>
-      <td>p8KcAK9bYM1MhB6m1LZBzA.jpg</td>
-      <td>b_0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>203559</td>
-      <td>0.098167</td>
-      <td>0.015111</td>
-    </tr>
-    <tr>
-      <th>216</th>
-      <td>_6qHHdUHjbyLGdwqfTZgRA.jpg</td>
-      <td>b_0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>491739</td>
-      <td>0.237143</td>
-      <td>0.020932</td>
-    </tr>
-    <tr>
-      <th>251</th>
-      <td>Pb73PiqChAM_VjnM6-mByA.jpg</td>
-      <td>b_0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>376957</td>
-      <td>0.181789</td>
-      <td>0.011261</td>
-    </tr>
-    <tr>
-      <th>260</th>
-      <td>Pb73PiqChAM_VjnM6-mByA.jpg</td>
-      <td>b_1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>178937</td>
-      <td>0.086293</td>
-      <td>0.103031</td>
-    </tr>
-    <tr>
-      <th>272</th>
-      <td>PAJ-MaBAsXToem1f8tQXQA.jpg</td>
-      <td>b_0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>2656813</td>
-      <td>0.844578</td>
-      <td>0.040326</td>
-    </tr>
-    <tr>
-      <th>306</th>
-      <td>_FczOQH2Gps-DKWQb9aLlw.jpg</td>
-      <td>b_0</td>
-      <td>id_1</td>
-      <td>[319, 507]</td>
-      <td>1</td>
-      <td>402790</td>
-      <td>0.194247</td>
-      <td>0.133335</td>
-    </tr>
-    <tr>
-      <th>322</th>
-      <td>_YBDP9H7rtRL8ooFlNKGew.jpg</td>
-      <td>b_0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>328583</td>
-      <td>0.158460</td>
-      <td>0.133817</td>
-    </tr>
-    <tr>
-      <th>440</th>
-      <td>_ObTdbCdQQTHL1kYnT7dyg.jpg</td>
-      <td>b_0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>81129</td>
-      <td>0.025790</td>
-      <td>0.093025</td>
-    </tr>
-    <tr>
-      <th>529</th>
-      <td>_40EqDxSm7VfFa3loCybQA.jpg</td>
-      <td>b_0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>476829</td>
-      <td>0.229952</td>
-      <td>0.038534</td>
-    </tr>
-    <tr>
-      <th>558</th>
-      <td>p0BLyIbSaWEhftL1Cuasaw.jpg</td>
-      <td>b_0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>760542</td>
-      <td>0.241770</td>
-      <td>0.027758</td>
-    </tr>
-    <tr>
-      <th>576</th>
-      <td>p9LjGq-iOOegdkOiA4JRPQ.jpg</td>
-      <td>b_0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>132229</td>
-      <td>0.063768</td>
-      <td>0.113470</td>
-    </tr>
-    <tr>
-      <th>739</th>
-      <td>p4zxq9hYv_OWvCwoy83HJA.jpg</td>
-      <td>b_0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>145565</td>
-      <td>0.070199</td>
-      <td>0.006808</td>
-    </tr>
-    <tr>
-      <th>760</th>
-      <td>p4w0rP6eCcUI3w3htiMm3g.jpg</td>
-      <td>b_0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>704624</td>
-      <td>0.339807</td>
-      <td>0.006323</td>
-    </tr>
-    <tr>
-      <th>762</th>
-      <td>p4w0rP6eCcUI3w3htiMm3g.jpg</td>
-      <td>b_1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>216708</td>
-      <td>0.104508</td>
-      <td>0.045554</td>
-    </tr>
-    <tr>
-      <th>822</th>
-      <td>p4zCd5huZE35tEWakIhZv6.jpg</td>
-      <td>b_0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>163759</td>
-      <td>0.078973</td>
-      <td>0.119212</td>
-    </tr>
-    <tr>
-      <th>824</th>
-      <td>p4zCd5huZE35tEWakIhZv6.jpg</td>
-      <td>b_1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>371558</td>
-      <td>0.179185</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>885</th>
-      <td>_qOoozLWFdlXfwI4lbFKCw.jpg</td>
-      <td>b_0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>214753</td>
-      <td>0.103565</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>910</th>
-      <td>p7Mu8DjZsfEomtAVPDy0hw.jpg</td>
-      <td>b_0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>247912</td>
-      <td>0.119556</td>
-      <td>0.054652</td>
-    </tr>
-    <tr>
-      <th>915</th>
-      <td>p7Mu8DjZsfEomtAVPDy0hw.jpg</td>
-      <td>b_1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>369672</td>
-      <td>0.178275</td>
-      <td>0.031777</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+![jpg](../assets/img/post2/example1.jpg)
+
+![jpg](../assets/img/post2/example2.jpg)
+
+![jpg](../assets/img/post2/example3.jpg)
+
+The output images look great for the small amount of training data we have available! They would most likely improve quite a bit with a few hundred additional training images.
 
 ### Downloading Results to the local Machine
 
