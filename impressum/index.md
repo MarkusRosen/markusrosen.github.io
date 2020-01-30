@@ -12,7 +12,7 @@ Erlenweg 1<br />
 
 <h2>Kontakt</h2>
 <p>Telefon: 017644485798<br />
-E-Mail: markus.rosenfelder@gmail.com</p>
+E-Mail: markus@rosenfelder.ai</p>
 
 ## Verantwortlich f&uuml;r den Inhalt nach &sect; 55 Abs. 2 RStV
 
