@@ -15,7 +15,7 @@ tags:
   ]
 ---
 
-This tutorial teaches you how to implement instance image segmentation with a real use case. I have written this tutorial for researchers that have fundamental machine learning and Python programming skills that want to implement instance image segmentation for further use in their urban energy simulation models. `detectron2` is still under substantial development and as of January 2020 usable with Windows without some code changes [that I explain in more detail on this GitHub Repository](https://github.com/InformationSystemsFreiburg/image_segmentation_japan). Instead of using `detectron2` on a local machine, you can also use Google Colab and a free GPU from Google for your models. The GPU is either an Nvidia K80, T4, P4, or P100, all of which are powerful enough to train `detectron2` models. **Important note: Computation time on Google Colab is limited to 12 hours**.
+This tutorial teaches you how to implement instance image segmentation with a real use case. I have written this tutorial for researchers that have fundamental machine learning and Python programming skills that want to implement instance image segmentation for further use in their urban energy simulation models. `detectron2` is still under substantial development and as of January 2020 not usable with Windows without some code changes [that I explain in more detail on this GitHub Repository](https://github.com/InformationSystemsFreiburg/image_segmentation_japan). Instead of using `detectron2` on a local machine, you can also use Google Colab and a free GPU from Google for your models. The GPU is either an Nvidia K80, T4, P4, or P100, all of which are powerful enough to train `detectron2` models. **Important note: Computation time on Google Colab is limited to 12 hours**.
 
 The first part of this tutorials is based on the beginners' tutorial of `detectron2`, the second part and third part come from the research stay of [Markus Rosenfelder](https://www.is.uni-freiburg.de/mitarbeiter-en/team/markus-rosenfelder) at [GCP NIES](https://www.cger.nies.go.jp/gcp/) in Tsukuba.
 
@@ -839,13 +839,13 @@ print(datetime.now() - start)
 df
 ```
 
-### Results
-
 ```bash
     100%|██████████| 49/49 [02:06<00:00,  2.58s/it]
 
     0:02:06.347280
 ```
+
+### Results
 
 | file_name                   | id  | tagged_id | tagged_id_coords | category | pixel_area | building_area_perc_of_image | window_percentage |
 | --------------------------- | --- | --------- | ---------------- | -------- | ---------- | --------------------------- | ----------------- |
