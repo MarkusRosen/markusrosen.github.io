@@ -104,13 +104,13 @@ take a quick look into the data
 print(points)
 ```
 
-| osm_id | code       | fclass | name       | geometry           |                                |
-| ------ | ---------- | ------ | ---------- | ------------------ | ------------------------------ |
-| 92     | 30839687   | 2301   | restaurant | de Eethoek         | POINT (521775.259 6910003.671) |
-| 144    | 34043796   | 2301   | restaurant | Sizzling Wok       | POINT (550760.350 6853264.008) |
-| ...    | ...        | ...    | ...        | ...                | ...                            |
-| 37100  | 7126562155 | 2301   | restaurant | Duinberk           | POINT (522497.422 6928134.759) |
-| 37111  | 7137254485 | 2301   | restaurant | Vleesch noch Visch | POINT (542280.944 6869060.363) |
+|       | osm_id     | code | fclass     | name               | geometry                       |
+| ----- | ---------- | ---- | ---------- | ------------------ | ------------------------------ |
+| 92    | 30839687   | 2301 | restaurant | de Eethoek         | POINT (521775.259 6910003.671) |
+| 144   | 34043796   | 2301 | restaurant | Sizzling Wok       | POINT (550760.350 6853264.008) |
+| ...   | ...        | ...  | ...        | ...                | ...                            |
+| 37100 | 7126562155 | 2301 | restaurant | Duinberk           | POINT (522497.422 6928134.759) |
+| 37111 | 7137254485 | 2301 | restaurant | Vleesch noch Visch | POINT (542280.944 6869060.363) |
 
 Looks good so far! Now to load the shapefile for the city of Amsterdam in a similar manner as before:
 
@@ -125,16 +125,16 @@ take a quick look into this data as well
 print(city)
 ```
 
-| Stadsdeel_code | Stadsdeel | Opp_m2     | geometry |                                                   |
-| -------------- | --------- | ---------- | -------- | ------------------------------------------------- |
-| 0              | A         | Centrum    | 8043500  | POLYGON ((549136.599 6867376.523, 549133.148 6... |
-| 1              | B         | Westpoort  | 28991600 | POLYGON ((543892.115 6872660.218, 543540.457 6... |
-| 2              | E         | West       | 10629900 | POLYGON ((544918.815 6870710.847, 544873.285 6... |
-| 3              | F         | Nieuw-West | 38015500 | POLYGON ((539955.524 6866252.019, 539951.183 6... |
-| 4              | K         | Zuid       | 17274000 | POLYGON ((547134.629 6862225.476, 547129.731 6... |
-| 5              | M         | Oost       | 30594900 | POLYGON ((560946.039 6864490.649, 560918.543 6... |
-| 6              | N         | Noord      | 63828800 | POLYGON ((565410.507 6870704.099, 564865.041 6... |
-| 7              | T         | Zuidoost   | 22113700 | POLYGON ((558996.500 6854997.221, 558987.372 6... |
+|     | Stadsdeel_code | Stadsdeel  | Opp_m2   | geometry                                          |
+| --- | -------------- | ---------- | -------- | ------------------------------------------------- |
+| 0   | A              | Centrum    | 8043500  | POLYGON ((549136.599 6867376.523, 549133.148 6... |
+| 1   | B              | Westpoort  | 28991600 | POLYGON ((543892.115 6872660.218, 543540.457 6... |
+| 2   | E              | West       | 10629900 | POLYGON ((544918.815 6870710.847, 544873.285 6... |
+| 3   | F              | Nieuw-West | 38015500 | POLYGON ((539955.524 6866252.019, 539951.183 6... |
+| 4   | K              | Zuid       | 17274000 | POLYGON ((547134.629 6862225.476, 547129.731 6... |
+| 5   | M              | Oost       | 30594900 | POLYGON ((560946.039 6864490.649, 560918.543 6... |
+| 6   | N              | Noord      | 63828800 | POLYGON ((565410.507 6870704.099, 564865.041 6... |
+| 7   | T              | Zuidoost   | 22113700 | POLYGON ((558996.500 6854997.221, 558987.372 6... |
 
 This data looks fine as well! Now we need to remove any points that lie outside the city boarders. For this, we perform a spatial join between the points and polygons and filter out any points that did not match with the polygons. After the join, we drop any points that have not gained an `ìndex` from the polygons, which means the specific points lie outside the city boarders:
 
