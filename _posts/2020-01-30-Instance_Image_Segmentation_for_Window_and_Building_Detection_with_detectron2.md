@@ -16,9 +16,39 @@ tags:
   ]
 ---
 
-This tutorial teaches you how to implement instance image segmentation with a real use case. I have written this tutorial for researchers that have fundamental machine learning and Python programming skills with an interest in implementing instance image segmentation for further use in their urban energy simulation models. `detectron2` is still under substantial development and as of January 2020 not usable with Windows without some code changes [that I explain in more detail on this GitHub Repository](https://github.com/InformationSystemsFreiburg/image_segmentation_japan). Instead of using `detectron2` on a local machine, you can also use Google Colab and a free GPU from Google for your models. The GPU is either an Nvidia K80, T4, P4, or P100, all of which are powerful enough to train `detectron2` models. **Important note: Computation time on Google Colab is limited to 12 hours**.
+In this post we use a real case study to implement instance image segmentation. I have written this tutorial for researchers that have fundamental machine learning and Python programming skills with an interest in implementing instance image segmentation for further use in their urban energy simulation models. `detectron2` is still under substantial development and as of January 2020 not usable with Windows without some code changes [that I explain in more detail on this GitHub Repository](https://github.com/InformationSystemsFreiburg/image_segmentation_japan). Instead of using `detectron2` on a local machine, you can also use Google Colab and a free GPU from Google for your models. The GPU is either an Nvidia K80, T4, P4, or P100, all of which are powerful enough to train `detectron2` models. **Important note: Computation time on Google Colab is limited to 12 hours**.
 
 The first part of this tutorials is based on the beginners' tutorial of `detectron2`, the second part and third part come from the research stay of [Markus Rosenfelder](https://www.is.uni-freiburg.de/mitarbeiter-en/team/markus-rosenfelder) at [GCP NIES](https://www.cger.nies.go.jp/gcp/) in Tsukuba.
+
+## Table of Contents
+
+- [Table of Contents](#table-of-contents)
+- [Part 1 Installation and setup](#part-1-installation-and-setup)
+  - [Installation within Google Colab](#installation-within-google-colab)
+  - [Running a pretrained model](#running-a-pretrained-model)
+- [Part 2 - Training and Inferencing (detecting windows and buildings)](#part-2---training-and-inferencing-detecting-windows-and-buildings)
+  - [Creating a custom dataset with VGG Image Annotator](#creating-a-custom-dataset-with-vgg-image-annotator)
+  - [Download the data from GitHub](#download-the-data-from-github)
+  - [Import more packages](#import-more-packages)
+  - [Read the output `JSON`-file from the VGG Image Annotator](#read-the-output-json-file-from-the-vgg-image-annotator)
+  - [Prepare the data](#prepare-the-data)
+  - [View the input data](#view-the-input-data)
+  - [Configure the `detectron2` model](#configure-the-detectron2-model)
+  - [Start training](#start-training)
+  - [Inferencing for new data](#inferencing-for-new-data)
+- [Part 3 - Processing the prediction results](#part-3---processing-the-prediction-results)
+  - [Importing of additional packages](#importing-of-additional-packages)
+  - [Set some general colour and font settings](#set-some-general-colour-and-font-settings)
+  - [Function to draw a bounding box](#function-to-draw-a-bounding-box)
+  - [Function to draw masks](#function-to-draw-masks)
+  - [Calculate the percentage of window to facade](#calculate-the-percentage-of-window-to-facade)
+  - [Get Tagged IDs for the Buildings](#get-tagged-ids-for-the-buildings)
+  - [Save the building information to a CSV](#save-the-building-information-to-a-csv)
+  - [Function to process all the data](#function-to-process-all-the-data)
+  - [Use multiple CPU Cores for processing](#use-multiple-cpu-cores-for-processing)
+  - [Run the processing](#run-the-processing)
+  - [Results](#results)
+  - [Downloading Results to the local Machine](#downloading-results-to-the-local-machine)
 
 ## Part 1 Installation and setup
 
