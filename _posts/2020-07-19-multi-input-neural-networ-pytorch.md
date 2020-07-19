@@ -346,7 +346,9 @@ One question which always is challenging to answer in deep learning is the choic
 ```
 
 We use the suggested learning rate and add it to our model hyperparameters.
+
 ![Input image.](../assets/img/post3/lr_mi.png)
+
 In the image above, we can see that the optimal learning rate is at the curve's steepest gradient. There are multiple similar steep gradients in this example. Therefore it might make sense to try a few of them in an actual real use case. Our ideal learning here is `0.0964781961431852e-07`, which is quite small.
 
 Now we can start the actual training of the model and run the best epoch for our test dataset.
