@@ -327,7 +327,7 @@ if __name__ == "__main__":
     early_stop_callback = EarlyStopping(monitor="val_loss", min_delta=5000, patience=7, verbose=False, mode="min")
 ```
 
-We start with a Tensorboardlogger, which saves all the logs into a folder called `lightning_logs`. Additionally, we want to take advantage of early stopping. Early stopping means that the model will stop training if the validation predictions do not improve enough after a certain amount of epochs (patience). We set our patients to 7 epochs, where the minimum improvement has to be 5000\$; if it does not improve by more within 7 epochs, the model stops training.
+We start with a Tensorboardlogger, which saves all the logs into a folder called `lightning_logs`. Additionally, we want to take advantage of early stopping. Early stopping means that the model will stop training if the validation predictions do not improve enough after a certain amount of epochs (patience). We set our patients to 7 epochs, where the minimum improvement has to be 5000\$; if it does not improve by more within 7 epochs, the model stops training. To read more about early stopping, you can have a look at [this paper](https://papers.nips.cc/paper/1895-overfitting-in-neural-nets-backpropagation-conjugate-gradient-and-early-stopping.pdf).
 
 ```python
     model = LitClassifier()
@@ -336,7 +336,7 @@ We start with a Tensorboardlogger, which saves all the logs into a folder called
 
 Now we can create the model and a trainer, where we specify the number of GPUs we want to use and our logger and early stopping.
 
-One question which always is challenging to answer in deep learning is the choice of the learning rate parameter. Often people just take a wild guess and try a few different ones, but `PyTorch Lightning` can help us with a learning rate finder. Through cyclically varying the learning rate with a few model restarts, we can find a reasonable starting learning rate.
+One question which always is challenging to answer in deep learning is the choice of the learning rate parameter. Often people just take a wild guess and try a few different ones, but `PyTorch Lightning` can help us with a learning rate finder. Through cyclically varying the learning rate with a few model restarts, we can find a reasonable starting learning rate. You can read more about it in the [according paper](https://arxiv.org/abs/1506.01186).
 
 ```python
     lr_finder = trainer.lr_find(model)
