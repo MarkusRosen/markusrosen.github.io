@@ -437,14 +437,14 @@ template {
 }
 
 .highlight {
-  background-color: #faf9f9;
+  background-color: #ffffff;
   -webkit-border-radius: 3px;
   border-radius: 3px;
   margin: 0;
 }
 
 .highlighter-rouge {
-  color: #369eff;
+  color: #646464;
   font-weight: 400;
   border: 1px solid #607d8b;
   -webkit-border-radius: 3px;
