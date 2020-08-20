@@ -219,14 +219,14 @@ If we want to get an impression on the spatial distribution, a KDE plot might he
 ```python
 fig, ax = plt.subplots(figsize=(10,10))
 density_plot = sns.kdeplot(
-points["geometry"].x,
-points["geometry"].y,
-shade=True,
-alpha=0.5,
-cmap="viridis",
-shade_lowest=False,
-zorder=3
-)
+                points["geometry"].x,
+                points["geometry"].y,
+                shade=True,
+                alpha=0.5,
+                cmap="viridis",
+                shade_lowest=False,
+                zorder=3
+                )
 plot_map(fig, ax, density_plot, city_boarders, "plot3")
 ```
 
@@ -244,14 +244,14 @@ z = gaussian_kde(xy)(xy)
 ```python
 fig, ax = plt.subplots(figsize=(10,10))
 points_density = ax.scatter(
-points["geometry"].x,
-points["geometry"].y,
-c=z,
-s=20,
-edgecolor='',
- alpha=0.7,
-zorder=3
-)
+                    points["geometry"].x,
+                    points["geometry"].y,
+                    c=z,
+                    s=20,
+                    edgecolor='',
+                    alpha=0.7,
+                    zorder=3
+                    )
 plot_map(fig, ax, points_density, city_boarders, "plot4")
 ```
 
@@ -265,11 +265,11 @@ If you want to change the markers in the map to more sophisticated ones, you cou
 fp = FontProperties(fname=r"./resources/Font Awesome 5 Free-Solid-900.otf")
 
 def get_marker(symbol):
-"""Extracts the symbol from the font."""
-v, codes = TextToPath().get_text_path(fp, symbol)
-v = np.array(v)
-mean = np.mean([np.max(v,axis=0), np.min(v, axis=0)], axis=0)
-return Path(v-mean, codes, closed=False)
+    """Extracts the symbol from the font."""
+    v, codes = TextToPath().get_text_path(fp, symbol)
+    v = np.array(v)
+    mean = np.mean([np.max(v,axis=0), np.min(v, axis=0)], axis=0)
+    return Path(v-mean, codes, closed=False)
 
 symbols = dict(map = "\uf041", map_alt = "\uf3c5")
 ```
@@ -279,15 +279,15 @@ We can now use these markers with the command `get_marker(symbols["map"])`
 ```python
 fig, ax = plt.subplots(figsize=(10,10))
 points_with_markers = ax.scatter(
-points["geometry"].x,
-points["geometry"].y,
-c="red",
-s=35,
-zorder=2,
-edgecolor='',
-alpha=0.5,
-marker=get_marker(symbols["map"])
-)
+                        points["geometry"].x,
+                        points["geometry"].y,
+                        c="red",
+                        s=35,
+                        zorder=2,
+                        edgecolor='',
+                        alpha=0.5,
+                        marker=get_marker(symbols["map"])
+                        )
 plot_map(fig, ax, points_with_markers, city_boarders, "plot5")
 ```
 
@@ -298,15 +298,15 @@ This looks pretty good! And of course we can also combine the densty from before
 ```python
 fig, ax = plt.subplots(figsize=(10,10))
 points_with_markers_density = ax.scatter(
-points["geometry"].x,
-points["geometry"].y,
-c=z,
-s=45,
-zorder=2,
-edgecolor='',
- alpha=0.5,
-marker=get_marker(symbols["map"])
-)
+                        points["geometry"].x,
+                        points["geometry"].y,
+                        c=z,
+                        s=45,
+                        zorder=2,
+                        edgecolor='',
+                        alpha=0.5,
+                        marker=get_marker(symbols["map"])
+                        )
 plot_map(fig, ax,points_with_markers_density, city_boarders, "plot6")
 ```
 
