@@ -3,7 +3,7 @@ layout: post
 title: Transfer Learning with EfficientNet for Image Regression in Keras - Using Custom Data in Keras
 date: 2020-10-19 19:00:00 +0300
 description: This tutorial teaches you how to use Keras for Image regression problems on a custom dataset with transfer learning.
-img: /post4/teaser.jpg
+img: /post4/teaser.png
 tags: [Keras, Regression, Deep Learning, Transfer Learning, AI]
 ---
 
