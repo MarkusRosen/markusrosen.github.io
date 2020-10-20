@@ -216,7 +216,7 @@ We can also better understand our data by taking a look into our training DataFr
 
 To make interpretations of our results more straightforward, we will use the mean absolute percentage error (MAPE). The MAPE is defined as
 
-$$MAPE = \frac{1}{n}\sum_{i=1}^{n} |\frac{y_i - \hat{y_i}}{y_i}|*100$$.
+$$MAPE = \frac{1}{n}\sum_{i=1}^{n} \|\frac{y_i - \hat{y_i}}{y_i}\|*100$$.
 
 Therefore, each loss from now on will be represented by a percentage of the error. If our actual value is 100\$ and our model predicts 110\$, we will get a 10% MAPE.
 
