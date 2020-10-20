@@ -7,8 +7,6 @@ img: /post4/teaser.png
 tags: [Keras, Regression, Deep Learning, Transfer Learning, AI]
 ---
 
-## TODO
-
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 
 <script
@@ -17,10 +15,6 @@ tags: [Keras, Regression, Deep Learning, Transfer Learning, AI]
       async
       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
 </script>
-
-- Github Repo public
-- gitub readme
-- github description
 
 There are hundreds of tutorials online available on how to use Keras for deep learning. But at least to my impression, 99% of them just use the MNIST dataset and some form of a small custom convolutional neural network or ResNet for classification. Personally, I dislike the general idea of always using the easiest dataset for machine learning and deep learning tutorials since this leaves many important questions unanswered. Adapting these tutorials to a custom dataset for a regression problem can be a daunting and time-consuming task with hours of Googling and reading old StackOverflow questions or the official Keras documentation. Through this tutorial, I want to show you how to use a custom dataset and use transfer learning to get great results with very little training time. The following topics will be part of this tutorial:
 
@@ -35,7 +29,6 @@ For this, I have uploaded [a custom image dataset of housing prices](https://1dr
 
 ## Table of Contents
 
-- [TODO](#todo)
 - [Table of Contents](#table-of-contents)
 - [Preliminary Steps](#preliminary-steps)
   - [Code overview](#code-overview)
