@@ -21,19 +21,17 @@ tags: [Keras, Regression, Deep Learning, Transfer Learning, AI]
 - Github Repo public
 - gitub readme
 - github description
-- math to image
-- check all links
 
-There are hundreds of tutorials online available on how to use Keras for deep learning. But at least to my impression, 99% of them just use the easy to use MNIST dataset and some form of a small custom convolutional neural network or ResNet for classification. Personally, I dislike the general idea of always using the easiest dataset for machine learning and deep learning tutorials since this leaves many important questions unanswered. Adapting these tutorials to a custom dataset for a regression problem can be a daunting and time-consuming task with hours of Googling and reading old StackOverflow questions and the official Keras documentation. Through this tutorial, I want to show you how to use a custom dataset and use transfer learning to get great results with very little training time. The following topics will be part of this tutorial:
+There are hundreds of tutorials online available on how to use Keras for deep learning. But at least to my impression, 99% of them just use the MNIST dataset and some form of a small custom convolutional neural network or ResNet for classification. Personally, I dislike the general idea of always using the easiest dataset for machine learning and deep learning tutorials since this leaves many important questions unanswered. Adapting these tutorials to a custom dataset for a regression problem can be a daunting and time-consuming task with hours of Googling and reading old StackOverflow questions or the official Keras documentation. Through this tutorial, I want to show you how to use a custom dataset and use transfer learning to get great results with very little training time. The following topics will be part of this tutorial:
 
 - use ImageDataGenerators and Pandas DataFrames to load your custom dataset
 - augment your image to improve prediction results
 - plot augmentations
-- adapt the state-of-the-art EfficientNet to a regression target
+- adapt the state-of-the-art EfficientNet to a regression
 - use the new Ranger optimizer from `tensorflow_addons`
 - compare the EfficientNet results to a simpler custom convolutional neural network
 
-For this, I have uploaded [a custom image dataset of housing prices](https://1drv.ms/u/s!AqUPqx8G81xZiawi20d2PucCFrAKzA?e=2MHhua) in New York with a corresponding DataFrame with a few columns of information about the houses. The dataset consists of 10,900 images that I have already resized to 224x224 pixels. The full code of this tutorial can be found in the [GitHub Repository](https://github.com/MarkusRosen/keras-efficientnet-regression).
+For this, I have uploaded [a custom image dataset of housing prices](https://1drv.ms/u/s!AqUPqx8G81xZiawi20d2PucCFrAKzA?e=2MHhua) in New York with a corresponding DataFrame constisting of a handful of columns with additional information about the houses. The dataset consists of 10,900 images that I have already resized to 224x224 pixels. The full code of this tutorial can be found in the [GitHub Repository](https://github.com/MarkusRosen/keras-efficientnet-regression).
 
 ## Table of Contents
 
@@ -155,7 +153,7 @@ if __name__ == "__main__":
 
 ### Splitting the data
 
-Our data needs to be split into training, validation, and test datasets. Additionally, we want to compute a naive baseline, where we assume that our training mean is our prediction value. The basic idea behind this is that anyone could just take the training data's mean to predict new data and might already get good results without any machine learning knowledge. With this, we can later better understand how useful our actual CNN predictions are compared to the baseline. The following two lines of code need to be added to our run function from before.
+Our data needs to be split into training, validation, and test datasets. Additionally, we want to compute a naive baseline, where we assume that our training mean is our prediction value. The basic idea behind this is that anyone could just take the training data's mean to predict new data and might already get good results without any machine learning knowledge. With this, we can later better understand how useful our actual CNN predictions are compared to the naive baseline. The following two lines of code need to be added to our run function from before.
 
 ```python
 def run():
@@ -260,7 +258,7 @@ Our mean baseline MAPE is 28.72%. This is the naive benchmark that we try to bea
 
 ### Create ImageDataGenerators
 
-After finishing the preliminary stuff, we can get to the interesting part of implementing a custom dataset into Keras. Let's start by adding the following line to our `run()` function:
+After finishing the preliminary steps, we can get to the interesting part of implementing a custom dataset into Keras. Let's start by adding the following line to our `run()` function:
 
 ```python
 def run():
@@ -270,11 +268,11 @@ def run():
     )
 ```
 
-We now need to write a function `create_generators()` that takes our input data and creates three Keras `ImageDataGenerators`. There are two steps involved in creating `ImageDataGenerators`: first, create an instance of the `ImageDataGenerator` class and then let the data flow into it, in our case, through a Pandas DataFrame.
+We now need to write a function `create_generators()` that takes our input data and creates three Keras `ImageDataGenerators`, one for each split of the data. There are two steps involved in creating `ImageDataGenerators`: first, create an instance of the `ImageDataGenerator` class and then let the data flow into it, in our case, through a Pandas DataFrame.
 
 In the first step, we add a few standard data augmentations to our training generator. Augmentations help our CNN training a lot if we have only a small dataset. They generate new observations of the same image with a few minor edits, which a human could clearly identify as the same image. In this case, they are relatively conservative since it would not really make sense to vertically flip a picture of a house. We don't add any augmentations in our validation and training data, as we would expect new unseen data to also be in a non-augmentated format.
 
-To feed data into the generator, we use `flow_from_dataframe()` for each generator separately. We specify which DataFrame we want to use, which column contains our image data `x_col`, what our desired image size and batch size should be. Please either decrease or increase the `batch_size` according to your GPU. Later on, we will use `EfficientNetB0`, which expects an input size of 224x224. If you use any other EfficientNet architecture, you need to change the input image size accordingly. For regressions, we use the `class_mode` of `raw`.
+To feed data into the generator, we use `flow_from_dataframe()` for each generator separately. We specify which DataFrame we want to use, which column contains our image data `x_col`, what our desired image size and batch size should be. Later on, we will use `EfficientNetB0`, which expects an input size of 224x224. If you use any other EfficientNet architecture, you need to change the input image size accordingly. Please either decrease or increase the `batch_size` according to your GPU. For regressions, we use the `class_mode` of `raw`.
 
 We visualize the augmentations with another function later to get an impression of how they change our input data.
 
@@ -350,7 +348,7 @@ def create_generators(
 
 #### Visualize Keras Data Augmentations
 
-We should look into our data augmentations to make sure that they make sense in a real-world application. Therefore we need to write the `visualize_augmentations()` function that we used to create data generators above. I pretty much hacked this together to only sample the same image 9 times out of the custom generator by giving the `flow_from_dataframe()` function a small DataFrame with only two identical observations. There is probably a better way to do this, but it does the job well enough.
+We should look into our data augmentations to make sure that they make sense in a real-world application. Therefore we need to write the `visualize_augmentations()` function that we used in our `create_generators()` function above. I pretty much hacked this together to only sample the same image 9 times out of the custom generator by giving the `flow_from_dataframe()` function a small DataFrame with only two identical observations. There is probably a better way to do this, but it does the job well enough.
 
 We create a 3x3 grid of `matplotlib` plots and sample one image each time from our small generator. Each will have a few augmentations added randomly.
 
@@ -474,7 +472,7 @@ To see how our model performs on unseen data, we evaluate the `test_generator`.
 
 Since our training might take a while, we might want to monitor the training steps with `TensorBoard`. For this, we create a new directory for each model with the current time and date and then start Tensorboard.
 
-To open TensorBoard, you need to enter `tensorboard --logdir logs/scalars` in your terminal/command line and then open the standard page in your browser, most likely [http://localhost:6006/](http://localhost:6006/). Early Stopping will help us decrease overall training time by stopping the training after the model does not improve for a specified amount of Epochs (`patience`) with a minimum improvement of `min_delta`. In our case, we want our model to improve by at least 1%. If it can't achieve this for 10 epochs straight, the training will end automatically. We also want to return the best epoch; therefore, we set `restore_best_weights=True`.
+To open TensorBoard, you need to enter `tensorboard --logdir logs/scalars` in your terminal/command line and then open the standard page in your browser, most likely [http://localhost:6006/](http://localhost:6006/). Early Stopping will help us decrease overall training time by stopping the training after the model does not improve for a specified amount of epochs (`patience`) with a minimum improvement of `min_delta`. In our case, we want our model to improve by at least 1%. If it can't achieve this for 10 epochs straight, the training will end automatically. We also want to return the best epoch; therefore, we set `restore_best_weights=True`.
 
 ```python
 def get_callbacks(model_name: str) -> List[Union[TensorBoard, EarlyStopping, ModelCheckpoint]]:
@@ -516,11 +514,11 @@ def get_callbacks(model_name: str) -> List[Union[TensorBoard, EarlyStopping, Mod
     return [tensorboard_callback, early_stopping_callback, model_checkpoint_callback]
 ```
 
-We also want to save our model after each epoch. For this we use `ModelCheckpoint()`. For `EfficientNetB0` this takes quite a while, so you might want to disable saving by removing `model_checkpoint_callback` from the function returned values.
+We also want to save our model after each epoch. For this we use `ModelCheckpoint()`. For `EfficientNetB0` this takes quite a while, so you might want to disable saving by removing `model_checkpoint_callback` from the returned values list.
 
 ### Create a small custom CNN
 
-A small custom CNN will help us understand how well transfer learning with EfficientNet actually performs. We add the following code to our `run()` function:
+A small custom CNN will help us understand how well transfer learning with EfficientNet actually performs through direct comparison. We add the following code to our `run()` function:
 
 ```python
 def run():
@@ -561,6 +559,7 @@ def small_cnn() -> Sequential:
 ```
 
 ![Small custom CNN.](../assets/img/post4/small_cnn.jpg)
+
 This small custom model looks like the image above and is still relatively easy to understand. The model should run each epoch a bit fast than the larger `EfficientNetB0` model we implement in the next step.
 
 ### Adapt EfficientNetB0 to our Custom Regression Problem
@@ -686,6 +685,6 @@ def plot_results(model_history_small_cnn: History, model_history_eff_net: Histor
 ```
 
 ![Model training and validation losses.](../assets/img/post4/training_validation_fixed.png)
-The results are shown above. The red dotted line represents our mean baseline, the blue line our small custom CNN and the orange line our adapted `EfficientNetB0`. Quite interestingly, `EfficientNetB0` reaches it's lowest validation error already in the 4th epoch, while our custom model needs 28 Epochs to get to it's minimum. On my machine, the custom CNN 17m30s required to reach it's lowest value, while EfficientNet needed only 3m40s to reach an even lower error. In my run of both models, EfficientNetB0 reached an error of 23.9706%, the custom model an error of 27.8397%, which is barely below our baseline of 28.7166%. This shows us that transfer learning can help decrease training time while increasing prediction accuracy on custom data for regressions!
+The results are shown above. The red dotted line represents our mean baseline, the blue line our small custom CNN and the orange line our adapted `EfficientNetB0`. Quite interestingly, `EfficientNetB0` reaches it's lowest validation error already in the 4th epoch, while our custom model needs 18 Epochs to get to it's minimum. On my machine, the custom CNN required 17m30s to reach it's lowest value, while EfficientNet needed only 3m40s to reach an even lower error. In my run of both models, EfficientNetB0 reached an error of 23.9706%, the custom model an error of 27.8397%, which is barely below our baseline of 28.7166%. This shows us that transfer learning can help decrease training time while increasing prediction accuracy on custom data for regressions!
 
 As always, you can find the complete code of this tutorial in the according to [GitHub Repository](https://github.com/MarkusRosen/keras-efficientnet-regression).
