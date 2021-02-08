@@ -313,3 +313,16 @@ plot_map(fig, ax,points_with_markers_density, city_boarders, "plot6")
 ![Fifth map](/assets/img/post1/plot6.jpg)
 
 With this last map, we conclude this short tutorial into mapping with Python.
+
+If this tutorial was helpful for your research, you can cite it with
+
+```bash
+@misc{rosenfelderaimaps2020,
+  author = {Rosenfelder, Markus},
+  title = {Create Beautiful Maps with Python},
+  year = {2020},
+  publisher = {rosenfelder.ai},
+  journal = {rosenfelder.ai},
+  howpublished = {\url{https://rosenfelder.ai/create-maps-with-python/}},
+}
+```

@@ -681,3 +681,16 @@ def plot_results(model_history_small_cnn: History, model_history_eff_net: Histor
 The results are shown above. The red dotted line represents our mean baseline, the blue line our small custom CNN and the orange line our adapted `EfficientNetB0`. Quite interestingly, `EfficientNetB0` reaches it's lowest validation error already in the 4th epoch, while our custom model needs 18 Epochs to get to it's minimum. On my machine, the custom CNN required 17m30s to reach it's lowest value, while EfficientNet needed only 3m40s to reach an even lower error. In my run of both models, EfficientNetB0 reached an error of 23.9706%, the custom model an error of 27.8397%, which is barely below our baseline of 28.7166%. This shows us that transfer learning can help decrease training time while increasing prediction accuracy on custom data for regressions!
 
 As always, you can find the complete code of this tutorial in the according to [GitHub Repository](https://github.com/MarkusRosen/keras-efficientnet-regression).
+
+If this tutorial was helpful for your research, you can cite it with
+
+```bash
+@misc{rosenfelderaikeras2020,
+  author = {Rosenfelder, Markus},
+  title = {Transfer Learning with EfficientNet for Image Regression in Keras - Using Custom Data in Keras},
+  year = {2020},
+  publisher = {rosenfelder.ai},
+  journal = {rosenfelder.ai},
+  howpublished = {\url{https://rosenfelder.ai/keras-regression-efficient-net/}},
+}
+```

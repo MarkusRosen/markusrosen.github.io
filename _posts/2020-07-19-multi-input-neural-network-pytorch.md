@@ -384,3 +384,16 @@ Our testing error for the mixed input model is at 243,335\$, which is not that b
 ### Whats next?
 
 This tutorial was only a small introduction to PyTorch Lightning and how to implement multi-input models consisting of image and tabular data for regression. The next step should be to take advantage of transfer learning by using a pretrained network, retraining only the last layer. Transfer learning would probably improve the prediction quite a bit. The tabular data could also be further improved with feature engineering for the latitude and longitude values and categorical embeddings for other features.
+
+If this tutorial was helpful for your research, you can cite it with
+
+```bash
+@misc{rosenfelderaipytorch2020,
+  author = {Rosenfelder, Markus},
+  title = {Multi-Input Deep Neural Networks with PyTorch-Lightning - Combine Image and Tabular Data},
+  year = {2020},
+  publisher = {rosenfelder.ai},
+  journal = {rosenfelder.ai},
+  howpublished = {\url{https://rosenfelder.ai/multi-input-neural-network-pytorch/}},
+}
+```

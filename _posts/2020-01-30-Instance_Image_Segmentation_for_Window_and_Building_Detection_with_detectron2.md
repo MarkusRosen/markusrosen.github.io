@@ -926,3 +926,16 @@ files.download('/content/predictions.zip')
 ```
 
 Here ends this first introduction on how to use `detectron2`. Note: This tutorial is also available as a [shareable Google Colab Notebook](https://colab.research.google.com/drive/1hxmdsLmqI6LR2v5SqHzH8oILXVI4eIzR).
+
+If this tutorial was helpful for your research, you can cite it with
+
+```bash
+@misc{rosenfelderaidetectron2020,
+  author = {Rosenfelder, Markus},
+  title = {Detectron2 - How to use Instance Image Segmentation for Building Recognition},
+  year = {2020},
+  publisher = {rosenfelder.ai},
+  journal = {rosenfelder.ai},
+  howpublished = {\url{https://rosenfelder.ai/Instance_Image_Segmentation_for_Window_and_Building_Detection_with_detectron2/}},
+}
+```
