@@ -80,7 +80,7 @@ Before we start the coding process, we need to create a new virtual environment.
 
 ### (Small Update using Conda instead of pip)
 
-If you prefer a conda setup, I wrote a short blog post about how to [setup Keras with GPU support on Linux](https://rosenfelder.ai/setup-keras-and-tensorflow/) using Miniconda. The resulting YAML for this project can be found here.
+If you prefer a conda setup, I wrote a short blog post about how to [setup Keras with GPU support on Linux](https://rosenfelder.ai/setup-keras-and-tensorflow/) using Miniconda. The resulting YAML for this project can be found [here](https://github.com/MarkusRosen/keras-efficientnet-regression/blob/master/requirements.yml).
 
 Enter the following lines into your command line:
 
