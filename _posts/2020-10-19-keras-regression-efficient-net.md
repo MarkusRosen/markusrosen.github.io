@@ -24,6 +24,7 @@ There are hundreds of tutorials online available on how to use Keras for deep le
 - adapt the state-of-the-art EfficientNet to a regression
 - use the new Ranger optimizer from `tensorflow_addons`
 - compare the EfficientNet results to a simpler custom convolutional neural network
+- use the final model to inference on new data
 
 For this, I have uploaded [a custom image dataset of housing prices](https://1drv.ms/u/s!AqUPqx8G81xZiawi20d2PucCFrAKzA?e=2MHhua) in New York with a corresponding DataFrame constisting of a handful of columns with additional information about the houses. The dataset consists of 10,900 images that I have already resized to 224x224 pixels. The full code of this tutorial can be found in the [GitHub Repository](https://github.com/MarkusRosen/keras-efficientnet-regression).
 
@@ -44,6 +45,7 @@ For this, I have uploaded [a custom image dataset of housing prices](https://1dr
   - [Create a small custom CNN](#create-a-small-custom-cnn)
   - [Adapt EfficientNetB0 to our Custom Regression Problem](#adapt-efficientnetb0-to-our-custom-regression-problem)
 - [Results](#results)
+- [Inference on new data](#inference-on-new-data)
 
 ## Preliminary Steps
 
@@ -497,7 +499,7 @@ def get_callbacks(model_name: str) -> List[Union[TensorBoard, EarlyStopping, Mod
     )
 
     model_checkpoint_callback = ModelCheckpoint(
-        "./data/models/" + model_name,
+        "./data/models/" + model_name + ".h5",
         monitor="val_mean_absolute_percentage_error",
         verbose=0,
         save_best_only=True,  # save the best model
@@ -679,6 +681,97 @@ def plot_results(model_history_small_cnn: History, model_history_eff_net: Histor
 
 ![Model training and validation losses.](../assets/img/post4/training_validation_fixed.png)
 The results are shown above. The red dotted line represents our mean baseline, the blue line our small custom CNN and the orange line our adapted `EfficientNetB0`. Quite interestingly, `EfficientNetB0` reaches it's lowest validation error already in the 4th epoch, while our custom model needs 18 Epochs to get to it's minimum. On my machine, the custom CNN required 17m30s to reach it's lowest value, while EfficientNet needed only 3m40s to reach an even lower error. In my run of both models, EfficientNetB0 reached an error of 23.9706%, the custom model an error of 27.8397%, which is barely below our baseline of 28.7166%. This shows us that transfer learning can help decrease training time while increasing prediction accuracy on custom data for regressions!
+
+## Inference on new data
+
+Now that we have a model trained and saved, one might want to use this model on new, unseen data for inferencing. In our example we saved the weights only, not the model, therefore we need to re-establish our model before loading our trained weights. For this, we create a new file ìnference.py` in our projects root folder.
+
+```python
+from tensorflow.keras import layers, models, Model
+from tensorflow.keras.applications import EfficientNetB0
+from tensorflow import keras
+import os
+from PIL import Image
+import numpy as np
+
+# the next 3 lines of code are for my machine and setup due to https://github.com/tensorflow/tensorflow/issues/43174
+import tensorflow as tf
+
+physical_devices = tf.config.list_physical_devices("GPU")
+tf.config.experimental.set_memory_growth(physical_devices[0], True)
+
+
+def adapt_efficient_net() -> Model:
+    """This code uses adapts the most up-to-date version of EfficientNet with NoisyStudent weights to a regression
+    problem. Most of this code is adapted from the official keras documentation.
+
+    Returns
+    -------
+    Model
+        The keras model.
+    """
+    inputs = layers.Input(
+        shape=(224, 224, 3)
+    )  # input shapes of the images should always be 224x224x3 with EfficientNetB0
+    # use the downloaded and converted newest EfficientNet wheights
+    model = EfficientNetB0(include_top=False, input_tensor=inputs, weights="efficientnetb0_notop.h5")
+    # Freeze the pretrained weights
+    model.trainable = False
+
+    # Rebuild top
+    x = layers.GlobalAveragePooling2D(name="avg_pool")(model.output)
+    x = layers.BatchNormalization()(x)
+    top_dropout_rate = 0.4
+    x = layers.Dropout(top_dropout_rate, name="top_dropout")(x)
+    outputs = layers.Dense(1, name="pred")(x)
+
+    # Compile
+    model = keras.Model(inputs, outputs, name="EfficientNet")
+
+    return model
+
+
+def open_images(inference_folder: str) -> np.ndarray:
+
+    """[summary]
+
+    Parameters
+    ----------
+    inference_folder : str
+        Location of images for inferencing.
+
+    Returns
+    -------
+    np.ndarray
+        List of images as numpy arrays transformed to fit the efficient_net model input specs.
+    """
+    images = []
+    for img in os.listdir(inference_folder):
+        img_location = os.path.join(inference_folder, img)  # create full path to image
+
+        with Image.open(img_location) as img:  # open image with pillow
+
+            img = np.array(img)
+            img = img[:, :, :3]
+            img = np.expand_dims(img, axis=0)  # add 0 dimension to fit input shape of efficient_net
+
+        images.append(img)
+    images_array = np.vstack(images)  # combine images efficiently to a numpy array
+    return images_array
+
+
+model = adapt_efficient_net()
+model.load_weights("./data/models/eff_net.h5")
+images = open_images("./inference_samples")
+
+predictions = model.predict(images)
+
+images_names = os.listdir("./inference_samples")
+for image_name, prediction in zip(images_names, predictions):
+    print(image_name, prediction)
+```
+
+After recreating our model and loading the trained weights, we can inference on new data. We open the images found in our inferencing folder and apply a few numpy operations on them to make them fit into our model input specifications. Afterwards we can simply use `model.predict()` on our images and print the results.
 
 As always, you can find the complete code of this tutorial in the according to [GitHub Repository](https://github.com/MarkusRosen/keras-efficientnet-regression).
 
