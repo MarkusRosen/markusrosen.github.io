@@ -2,12 +2,12 @@
 layout: post
 title: Setup Tensorflow and Keras with CUDA Support - A fast and pain-free approach with Miniconda
 date: 2021-09-02 18:00:00 +0300
-description: This short tutorial shows you how to setup Tensorflow with GPU support on Linux and Miniconda
+description: This short tutorial shows you how to set up Tensorflow with GPU support on Linux and Miniconda
 img: /post5/teaser.png
 tags: [Keras, Tensorflow, Deep Learning, GPU Setup, CUDA, Anaconda, Miniconda]
 ---
 
-As a quick and easy to use deep learning framework I love to use Keras. With few lines of code one can utilize modern deep learning models with transfer learning on custom datasets. But it can be a giant pain to setup correctly on a Linux machine if any of the dependencies do not match (Ubuntu version, Tensorflow, CUDA, CuDNN...). I have spent way too many hours on trying to get it to work on PopOS with the regular pip-Versions, therefore this is a super short tutorial on how to set it up correctly. I assume that you already setup Linux with the correct nVidia drivers.
+As a quick and easy-to-use deep learning framework, I love to use Keras. With few lines of code, one can utilize modern deep learning models with transfer learning on custom datasets. But it can be a giant pain to set up correctly on a Linux machine if any dependencies do not match (Ubuntu version, Tensorflow, CUDA, CuDNN...). I have spent way too many hours trying to get it to work on PopOS with the regular pip-Versions. Therefore this is a super short tutorial on how to set it up correctly. I assume that you have already set up Linux with the correct Nvidia drivers.
 
 ## Table of Contents
 
@@ -32,13 +32,13 @@ pip install tensorflow==2.4
 
 First, download Miniconda from here: https://docs.conda.io/en/latest/miniconda.html
 
-Open your terminal and change to the folder where your Miniconda was downloaded to. Start the installation process and accept the installation conditions.
+Open your terminal and change to the folder where your Miniconda was downloaded to. Then, start the installation process and accept the installation conditions.
 
 ```bash
 bash Miniconda3-py39_4.10.3-Linux-x86_64.sh
 ```
 
-Restart your terminal. Create a new environment with a fitting name, like `keras-project` and activate it:
+Restart your terminal. Create a new environment with a fitting name, like `keras-project`, and activate it:
 
 ```bash
 conda create --name keras-project
@@ -48,7 +48,7 @@ conda activate keras-project
 
 Now we can install any Python version that we want. **Important:** Check which version of Python and Tensorflow you will need here: https://www.tensorflow.org/install/source#linux
 
-In this tutorial we will use Python 3.8 with Tensorflow 2.4 and CUDA 11.0. Therefore we will install all these dependencies accordingly:
+In this tutorial, we will use Python 3.8 with Tensorflow 2.4 and CUDA 11.0. Therefore we will install all these dependencies accordingly:
 
 ```bash
 conda install python=3.8
@@ -58,7 +58,7 @@ pip install tensorflow==2.4
 
 ## Test your Setup
 
-With the following Python code you should be able to check if your Tensorflow-Installation is using the GPU. Run this code within your active conda environment:
+With the following Python code, you should check if your Tensorflow-Installation is using the GPU. Then, run this code within your active conda environment:
 
 ```python
 import tensorflow as tf
@@ -83,9 +83,9 @@ coreClock: 1.185GHz coreCount: 36 deviceMemorySize: 7.79GiB deviceMemoryBandwidt
 2021-09-02 17:58:12.490611: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudnn.so.8
 ```
 
-Your output should look similar to above, if there are any errors you might have to restart this process.
+Your output should look similar to the above. If there are any errors, you might have to restart this process.
 
-After a successful setup I would personally create a YAML file as a basic starter for any future Keras projects. This can be done with
+After a successful setup, I would create a YAML file as a basic starter for any future Keras projects. This can be done with
 
 ```bash
 conda env export --name keras-project > tensorflow-base-env.yml
@@ -97,7 +97,7 @@ The YAML file can be used as a starter for a new environment with
 conda env create --name keras-project-new --file tensorflow-base-env.yml
 ```
 
-For more tips on how to use conda as a package manager, use the [cheat sheet](https://docs.conda.io/projects/conda/en/latest/_downloads/843d9e0198f2a193a3484886fa28163c/conda-cheatsheet.pdf).
+For more tips on using conda as a package manager, use the [cheat sheet](https://docs.conda.io/projects/conda/en/latest/_downloads/843d9e0198f2a193a3484886fa28163c/conda-cheatsheet.pdf).
 
 The YAML file should look like this:
 
@@ -166,4 +166,4 @@ dependencies:
 prefix: /home/YOURUSERNAME/miniconda3/envs/keras-project
 ```
 
-It it still does not work... just switch to PyTorch and PyTorch Lightning if possible.
+If it still does not work... just switch to PyTorch and PyTorch Lightning if possible.
