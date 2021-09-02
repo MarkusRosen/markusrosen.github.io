@@ -684,7 +684,7 @@ The results are shown above. The red dotted line represents our mean baseline, t
 
 ## Inference on new data
 
-Now that we have a model trained and saved, one might want to use this model on new, unseen data for inferencing. In our example we saved the weights only, not the model, therefore we need to re-establish our model before loading our trained weights. For this, we create a new file ìnference.py` in our projects root folder.
+Now that we have a model trained and saved, one might want to use this model on new, unseen data for inferencing. In our example we saved the weights only, not the model, therefore we need to re-establish our model before loading our trained weights. For this, we create a new file ìnference.py` in our projects root folder. In the following code I assume that your new and unseen data is located in a separate folder, with no other data needed. If your data is linked to a .csv-file you have to change the code accordingly.
 
 ```python
 from tensorflow.keras import layers, models, Model
@@ -732,8 +732,7 @@ def adapt_efficient_net() -> Model:
 
 
 def open_images(inference_folder: str) -> np.ndarray:
-
-    """[summary]
+    """Loads images from a folder and prepare them for inferencing.
 
     Parameters
     ----------
