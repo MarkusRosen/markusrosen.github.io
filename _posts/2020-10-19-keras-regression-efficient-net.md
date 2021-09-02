@@ -35,6 +35,7 @@ For this, I have uploaded [a custom image dataset of housing prices](https://1dr
   - [Code overview](#code-overview)
   - [Real Estate Data](#real-estate-data)
   - [Installation and Setup](#installation-and-setup)
+  - [(Small Update using Conda instead of pip)](#small-update-using-conda-instead-of-pip)
 - [Data Preprocessing](#data-preprocessing)
   - [Splitting the data](#splitting-the-data)
   - [Create ImageDataGenerators](#create-imagedatagenerators)
@@ -76,6 +77,10 @@ As you can see, the dataset consists of images with a specific `zpid` and a `pri
 ### Installation and Setup
 
 Before we start the coding process, we need to create a new virtual environment. Adjust the following steps if you are using another package manager, like Anaconda. I used Python 3.8.2 for the tutorial, but other versions will likely work without any modifications. I use TensorFlow 2.3.0 and Keras 2.4.3. More details on the library version can be found in the [requirements.txt](https://github.com/MarkusRosen/keras-efficientnet-regression/blob/master/requirements.txt).
+
+### (Small Update using Conda instead of pip)
+
+If you prefer a conda setup, I wrote a short blog post about how to [setup Keras with GPU support on Linux](https://rosenfelder.ai/setup-keras-and-tensorflow/) using Miniconda. The resulting YAML for this project can be found here.
 
 Enter the following lines into your command line:
 
