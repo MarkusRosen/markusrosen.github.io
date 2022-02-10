@@ -79,7 +79,7 @@ shapely.speedups.enable()
 Download the following data and extract it into the ./data folder of this project:
 
 - [Points of interest data from North Holland](http://download.geofabrik.de/europe/netherlands/noord-holland-latest-free.shp.zip)
-- [City boundaries as GeoJSON](https://maps.amsterdam.nl/open_geodata/geojson.php?KAARTLAAG=GEBIED_STADSDELEN&THEMA=gebiedsindeling)
+- [City boundaries as GeoJSON](https://maps.amsterdam.nl/open_geodata/geojson_lnglat.php?KAARTLAAG=GEBIEDEN22&THEMA=gebiedsindeling)
 
 You also have to unzip the `noord-holland-latest-free.shp.zip`.
 
@@ -89,7 +89,7 @@ Load the POI data. For the plotting package `tilemapbase` our data needs to be i
 
 ```python
 points = gpd.read_file("./data/gis_osm_pois_free_1.shp")
-points = points.to_crs({"init": "EPSG:3857"})
+points = points.to_crs("EPSG:3857")
 ```
 
 Filter the data for restaurants (or any other POI category):
@@ -116,7 +116,7 @@ Looks good so far! Now to load the shapefile for the city of Amsterdam in a simi
 
 ```python
 city = gpd.read_file("./data/geojson.json")
-city = city.to_crs({"init": "EPSG:3857"})
+city = city.to_crs("EPSG:3857")
 ```
 
 take a quick look into this data as well
