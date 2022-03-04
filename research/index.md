@@ -6,16 +6,14 @@ permalink: /research/
 
 ## Journal Articles
 
-> [Predicting Residential Electricity Consumption Using Aerial and Street View Images](https://doi.org/10.1016/j.apenergy.2021.117407)
->
-> Rosenfelder M, Wussow M, Gust G, Cremades R, Neumann D
+> [Predicting Residential Electricity Consumption Using Aerial and Street View Images](https://doi.org/10.1016/j.apenergy.2021.117407) </br>
+> Rosenfelder M, Wussow M, Gust G, Cremades R, Neumann D</br>
 > 2021 Applied Energy, volume: 301, page: 117407
 
 ## Talks
 
-> [Data-driven tools for urban transformations towards climate-resilience and sustainability: State-of-the-art and further needs](https://reinventingthecity.dryfta.com/program-schedule/program/72/data-driven-tools-for-urban-transformations-towards-climate-resilience-and-sustainability-state-of-the-art-and-further-needs)
->
-> Cheval S, Hewitt R, Rosenfelder M, Cremades R
+> [Data-driven tools for urban transformations towards climate-resilience and sustainability: State-of-the-art and further needs](https://reinventingthecity.dryfta.com/program-schedule/program/72/data-driven-tools-for-urban-transformations-towards-climate-resilience-and-sustainability-state-of-the-art-and-further-needs) </br>
+> Cheval S, Hewitt R, Rosenfelder M, Cremades R </br>
 > 2022 Reinventing the City
 
 > Improving Urban Analytics Using 3D Geometries and Graph Convolutional Neural Networks: Evidence from Real Estate Valuation
