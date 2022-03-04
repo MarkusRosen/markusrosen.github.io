@@ -21,7 +21,7 @@ As a quick and easy-to-use deep learning framework, I love to use Keras. With fe
 ```bash
 bash Miniconda3-py39_4.10.3-Linux-x86_64.sh
 conda create --name keras-project
-source /home/markus/miniconda3/bin/activate
+source /home/YOURUSERNAME/miniconda3/bin/activate
 conda activate keras-project
 conda install python=3.8
 conda install -c anaconda cudatoolkit=11.0
