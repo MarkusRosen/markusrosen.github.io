@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Published Articles and Conference Contributions
+title: Published Articles, Conference Contributions and Biography
 permalink: /research/
 ---
 
@@ -93,19 +93,19 @@ permalink: /research/
 
 ### Winter semester 2020/21
 
-- Exercise: Wirtschaftsinformatik für die Unternehmensführung: "Optimization and Simulation"
+- Exercise: Optimization and Simulation
 
 ### Summer semester 2020
 
-- Seminar: Introduction into Programming: Python Programming through practical Examples
+- Seminar: Introduction to Programming: Python Programming through practical Examples
 
 ### Winter semester 2019/2020
 
-- Seminar: Introduction into Programming: Python Programming through practical Examples
+- Seminar: Introduction to Programming: Python Programming through practical Examples
 
 ### Summer semester 2019
 
-- Seminar: Introduction into Programming: Python Programming through practical Examples
+- Seminar: Introduction to Programming: Python Programming through practical Examples
 - Workshop for PHDs: Web-scraping in Python
 - Lecture: Data Science (Hochschule Fresenius)
 
