@@ -8,6 +8,10 @@ permalink: /research/
 
 > [Predicting Residential Electricity Consumption Using Aerial and Street View Images](https://doi.org/10.1016/j.apenergy.2021.117407) <br> Rosenfelder M, Wussow M, Gust G, Cremades R, Neumann D <br> 2021 Applied Energy, volume: 301, page: 117407
 
+## Conference papers
+
+> Decision Support for Real Estate Investors: Improving Real Estate Valuation with 3D City Models and Points of Interest <br> Rosenfelder M, Gust G, Neumann D <br> 2019 Proceedings of the 14. Internationale Tagung Wirtschaftsinformatik, Siegen, Germany
+
 ## Talks
 
 > [Data-driven tools for urban transformations towards climate-resilience and sustainability: State-of-the-art and further needs](https://reinventingthecity.dryfta.com/program-schedule/program/72/data-driven-tools-for-urban-transformations-towards-climate-resilience-and-sustainability-state-of-the-art-and-further-needs) <br> Cheval S, Hewitt R, Rosenfelder M, Cremades R <br> 2022 Reinventing the City
@@ -18,20 +22,16 @@ permalink: /research/
 
 > Leveraging the Third Dimension: Opportunities and Guidelines for 3D Analytics <br> Gust G, Brandt T, Koppius O, Feuerriegel S, Rosenfelder M, Kaulich A, Neumann D <br> 2019 Winter Conference on Business Analytics (WCBA 2019), Snowbird, Utah, March 07-09, 2019
 
-## Conference papers
-
-> Decision Support for Real Estate Investors: Improving Real Estate Valuation with 3D City Models and Points of Interest <br> Rosenfelder M, Gust G, Neumann D <br> 2019 Proceedings of the 14. Internationale Tagung Wirtschaftsinformatik, Siegen, Germany
-
 ## Education
-
-### 01/2020 - 02/2020
-
-- Research stay at the National Institute for Environmental Studies in Tsukuba, Japan
 
 ### 01/2018 - 04/2022
 
 - PhD Candidate at the Chair of Information Systems, Albert-Ludwigs-Universität Freiburg
 - Dissertation: "Urban Climate Change Mitigation Strategies with Machine Learning and 3D Data: Theory, Application, Economic Assessment"
+
+### 01/2020 - 02/2020
+
+- Research stay at the National Institute for Environmental Studies in Tsukuba, Japan
 
 ### 10/2015 - 05/2018
 
