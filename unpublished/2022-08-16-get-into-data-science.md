@@ -2,7 +2,7 @@
 layout: post
 title: How to get into Data Science in 2022 without a CS background
 date: 2022-08-16 18:00:00 +0300
-description: This post shows what books to read and which courses to take to get into data science in 2022
+description: This post shows what books to read and courses to take to enter data science in 2022
 img: /post6/teaser.png
 tags:
   [
@@ -15,19 +15,21 @@ tags:
   ]
 ---
 
-Text
+As I'm nearing the end of my time as a Ph.D. student, I was wondering how I would approach it differently if I had the chance to do so. I have bachelor's and master's degrees in Economics, so my knowledge in programming and data science was limited before entering a Ph.D. program in information systems with an intense focus on applied machine learning. Thus, I had to work intensely on brushing up my programming, machine learning, and deep learning skills in a short amount of time on my own.
+
+The sheer amount of available books, courses, and tutorials on data science can be overwhelming. In this blog post, I collected all the material that, in my personal opinion, gives a great introduction to python programming, data preprocessing, machine learning as well as data engineering. If anyone has additional recommendations, please post them in the comments with a short explanation of why you found them helpful!
 
 ## Table of Contents
 
 - [Table of Contents](#table-of-contents)
 - [General Introduction to CS and Programming](#general-introduction-to-cs-and-programming)
+  - [Introduction to Python Programming](#introduction-to-python-programming)
+    - [Automate the Boring Stuff](#automate-the-boring-stuff)
+    - [Python for absolute beginners](#python-for-absolute-beginners)
   - [Linux, VSCode, Git, Docker and Containerization](#linux-vscode-git-docker-and-containerization)
     - [The Missing Semester of Your CS Education](#the-missing-semester-of-your-cs-education)
     - [Setting up VSCode for Data Science](#setting-up-vscode-for-data-science)
     - [Docker for Machine Learning](#docker-for-machine-learning)
-  - [Introduction to Python Programming](#introduction-to-python-programming)
-    - [Automate the Boring Stuff](#automate-the-boring-stuff)
-    - [Python for absolute beginners](#python-for-absolute-beginners)
   - [Databases](#databases)
 - [Introduction to Machine Learning, Deep Learning, Explainable AI and Graph/3D Deep Learning](#introduction-to-machine-learning-deep-learning-explainable-ai-and-graph3d-deep-learning)
   - [Data Preprocessing in Python](#data-preprocessing-in-python)
@@ -57,7 +59,26 @@ Text
 
 ## General Introduction to CS and Programming
 
+I'll start with a general introduction to applied computer science and programming. An excellent technical understanding of the underlying basics will pay 10x later when working with highly complex data, libraries, and concepts.
+
+### Introduction to Python Programming
+
+Python is still the #1 programming language for machine learning and data science in general. Other languages in this area are R and Julia, which are great for different reasons. Still, they do not come close to the vast amount of libraries and the overall large Python community online.
+
+#### Automate the Boring Stuff
+
+[![Automate the Boring Stuff](../assets/img/post6/automate.jpg)](https://automatetheboringstuff.com/)
+I personally learned Python programming a few years ago with a printed edition of [Automate the Boring Stuff with Python](https://automatetheboringstuff.com/). It is an excellent introduction to programming due to the shallow entry barrier and steady learning curve. Still, it does not shy away from more complex examples and gives beginners a chance to play around with python code on their own.
+
+#### Python for absolute beginners
+
+[![Python for absolute Beginners](../assets/img/post6/python-beginners.png)](https://www.youtube.com/watch?v=mDKM-JtUhhc)
+
+[Python for absolute Beginners](https://www.youtube.com/watch?v=mDKM-JtUhhc) is a great recommendation for people who learn better with a video course and a lecturer. It is a free 11-hour course covering the same programming principles as Automate the boring Stuff.
+
 ### Linux, VSCode, Git, Docker and Containerization
+
+A basic understanding of Linux, Git, and Containerization with Docker and VSCode as an editor might seem too much for any new data science learners. Still, it is one of the most essential basics to get work done efficiently later in your career. In addition, code reproducibility and working in a team through Git/Github are invaluable skills.
 
 #### The Missing Semester of Your CS Education
 
@@ -65,17 +86,28 @@ Text
 [![Git](../assets/img/post6/git.png)](https://missing.csail.mit.edu/)
 [The Missing Semester of Your CS Education](https://missing.csail.mit.edu/)
 
+As you get more advanced in your data science career, you will inevitably get in touch with Linux as an operating system on some remote server or working station. The missing semester of your CS education teaches the basics of working in a shell terminal, version control with Git, and code debugging.
+
 #### Setting up VSCode for Data Science
 
 [![VSCode](../assets/img/post6/vscode.png)](https://code.visualstudio.com/)
-text
 
-https://code.visualstudio.com/docs/python/python-tutorial
+I have used VSCode as my primary code editor for years and would always recommend it as the first and only choice for new data scientists. As with Python, the community around VSCode is vast, and everything you would ever need regarding programming is either already implemented in the editor or available as extensions. In addition, the ability to remotely program on workstations via SSH or even within docker containers has been insanely valuable and time-saving for me.
 
+These three tutorials help you get started with Python, Data Science and remote development with VSCode:
+
+- [Getting Started with Python in VS Code](https://code.visualstudio.com/docs/python/python-tutorial)
 - [Data Science in VS Code tutorial](https://code.visualstudio.com/docs/datascience/data-science-tutorial)
-  text
+
 - [VS Code Remote Development](https://code.visualstudio.com/docs/remote/remote-overview)
-  text
+
+A few extensions I would always recommend:
+
+- [autoDocstring](https://marketplace.visualstudio.com/items?itemName=njpwerner.autodocstring): automatically generates docstring templates for your Python functions.
+- [Better Comments](https://marketplace.visualstudio.com/items?itemName=aaron-bond.better-comments): Highlights comments in specific colors through keywords.
+- [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode): Automatic code formatting, combined with [Black](https://github.com/psf/black) as a formatter, I have never thought about code formatting again.
+- [Rainbow CSV](https://marketplace.visualstudio.com/items?itemName=mechatroner.rainbow-csv): You will work with CSV data a lot as a data scientist. This exertion color codes your columns to make reading data easier
+- [Markdown All in One](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one) and [Markdown Preview Enhanced](https://marketplace.visualstudio.com/items?itemName=shd101wyy.markdown-preview-enhanced) are instrumental when working with a lot of markdown files.
 
 #### Docker for Machine Learning
 
@@ -84,20 +116,7 @@ https://code.visualstudio.com/docs/python/python-tutorial
 - [Why use Docker containers for Machine Learning?](https://towardsdatascience.com/why-using-docker-for-machine-learning-74c927ceb6c4)
 - [Learn to build and deploy your distributed applications easily to the cloud with Docker](https://docker-curriculum.com/)
 - [Build and Run a Docker Container for your Machine Learning Model](https://towardsdatascience.com/build-and-run-a-docker-container-for-your-machine-learning-model-60209c2d7a7f)
-
-### Introduction to Python Programming
-
-#### Automate the Boring Stuff
-
-[![Automate the Boring Stuff](../assets/img/post6/automate.jpg)](https://automatetheboringstuff.com/)
-
-- [Automate the Boring Stuff with Python](https://automatetheboringstuff.com/)
-
-#### Python for absolute beginners
-
-[![Python for absolute Beginners](../assets/img/post6/python-beginners.png)](https://www.youtube.com/watch?v=mDKM-JtUhhc)
-
-- [Python for absolute beginners in 2022 + Exercises (Video)](https://www.youtube.com/watch?v=mDKM-JtUhhc)
+-
 
 ### Databases
 
