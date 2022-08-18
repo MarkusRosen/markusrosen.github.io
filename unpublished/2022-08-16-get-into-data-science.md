@@ -78,11 +78,9 @@ A basic understanding of Linux, Git, and Containerization with Docker and VSCode
 
 #### The Missing Semester of Your CS Education
 
-[![Linux](../assets/img/post6/tux.jpeg)](https://missing.csail.mit.edu/)
-[![Git](../assets/img/post6/git.png)](https://missing.csail.mit.edu/)
-[The Missing Semester of Your CS Education](https://missing.csail.mit.edu/)
+[![Linux](../assets/img/post6/tux.jpeg)](https://missing.csail.mit.edu/)[![Git](../assets/img/post6/git.png)](https://missing.csail.mit.edu/)
 
-As you get more advanced in your data science career, you will inevitably get in touch with Linux as an operating system on some remote server or working station. The missing semester of your CS education teaches the basics of working in a shell terminal, version control with Git, and code debugging.
+As you get more advanced in your data science career, you will inevitably get in touch with Linux as an operating system on some remote server or working station. [The Missing Semester of Your CS Education](https://missing.csail.mit.edu/) teaches the basics of working in a shell terminal, version control with Git, and code debugging.
 
 #### Setting up VSCode for Data Science
 
@@ -107,18 +105,16 @@ A few extensions I would always recommend:
 
 #### Docker for Machine Learning
 
-- envornments and versioning in python are a nightmare
-- tensorflow running is a nightmare
-- code needs to be reproducable
-- code sharing and collarberative programming are important
-- docker solves these problems
-
 [![Docker](../assets/img/post6/docker.png)](https://www.docker.com/)
+If you ever had to debug or run Python code from another person, you probably have encountered hours of library incompatibilities or similar issues. Python code packaging and versioning can be a nightmare. There is even an [xkcd for this particular problem](https://imgs.xkcd.com/comics/python_environment.png). For example, [getting Tensorflow installed correctly](https://rosenfelder.ai/setup-keras-and-tensorflow/) to run on your local GPU can be a very specific version of hell.
+
+Another problem when working on Python code in data science is the reproducibility of your results. How can you ensure that everyone who works on your code gets the same results as you?
+
+If you ever need to share your code or work on the same code base collaboratively, containerization is the best solution to these aforementioned problems. With Docker, all your code, Python version, libraries, package manager, and data are saved in one Docker container image. Therefore making it possible for anyone in your team to run the same code with the same data without any configuration hassle. Here are a few selected Docker tutorials to get you started:
 
 - [Why use Docker containers for Machine Learning?](https://towardsdatascience.com/why-using-docker-for-machine-learning-74c927ceb6c4)
 - [Learn to build and deploy your distributed applications easily to the cloud with Docker](https://docker-curriculum.com/)
 - [Build and Run a Docker Container for your Machine Learning Model](https://towardsdatascience.com/build-and-run-a-docker-container-for-your-machine-learning-model-60209c2d7a7f)
--
 
 ### Databases
 
@@ -198,6 +194,8 @@ https://quarto.org/
 - f[astai course](https://course.fast.ai/)
 
 ### Explainable AI
+
+link to own paper
 
 #### Interpretable Machine Learning - A Guide for Making Black Box Models Explainable
 
