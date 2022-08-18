@@ -31,7 +31,7 @@ The sheer amount of available books, courses, and tutorials on data science can 
     - [Setting up VSCode for Data Science](#setting-up-vscode-for-data-science)
     - [Docker for Machine Learning](#docker-for-machine-learning)
   - [Databases](#databases)
-- [Introduction to Machine Learning, Deep Learning, Explainable AI and Graph/3D Deep Learning](#introduction-to-machine-learning-deep-learning-explainable-ai-and-graph3d-deep-learning)
+- [Introduction to Machine Learning, Deep Learning and Explainable AI](#introduction-to-machine-learning-deep-learning-and-explainable-ai)
   - [Data Preprocessing in Python](#data-preprocessing-in-python)
   - [Data Visualization](#data-visualization)
     - [Fundamentals of Data Visualization](#fundamentals-of-data-visualization)
@@ -52,10 +52,6 @@ The sheer amount of available books, courses, and tutorials on data science can 
     - [Shapley](#shapley)
     - [InterpretML](#interpretml)
   - [Hyperparameter tuning](#hyperparameter-tuning)
-  - [3D/Graph Deep Learning](#3dgraph-deep-learning)
-- [3D Deep Learning and Machine Learning](#3d-deep-learning-and-machine-learning)
-  - [General Software](#general-software)
-  - [Point Clouds](#point-clouds)
 
 ## General Introduction to CS and Programming
 
@@ -111,6 +107,12 @@ A few extensions I would always recommend:
 
 #### Docker for Machine Learning
 
+- envornments and versioning in python are a nightmare
+- tensorflow running is a nightmare
+- code needs to be reproducable
+- code sharing and collarberative programming are important
+- docker solves these problems
+
 [![Docker](../assets/img/post6/docker.png)](https://www.docker.com/)
 
 - [Why use Docker containers for Machine Learning?](https://towardsdatascience.com/why-using-docker-for-machine-learning-74c927ceb6c4)
@@ -128,7 +130,7 @@ A few extensions I would always recommend:
 
 - [Introduction to SQLite](https://www.sqlitetutorial.net/)
 
-## Introduction to Machine Learning, Deep Learning, Explainable AI and Graph/3D Deep Learning
+## Introduction to Machine Learning, Deep Learning and Explainable AI
 
 ### Data Preprocessing in Python
 
@@ -227,21 +229,3 @@ https://quarto.org/
 
 https://optuna.org/
 https://optuna.readthedocs.io/en/stable/tutorial/index.html
-
-### 3D/Graph Deep Learning
-
-- [Geometric Deep Learning: Going beyond Euclidean data](https://arxiv.org/abs/2104.13478)
-- [AMMI Course "Geometric Deep Learning" (Video)](https://www.youtube.com/watch?v=PtA0lg_e5nA&list=PLn2-dEmQeTfQ8YVuHBOvAhUlnIPYxkeu3)
-
-## 3D Deep Learning and Machine Learning
-
-### General Software
-
-- [Open3D: A Modern Library for 3D Data Processing](http://www.open3d.org/docs/release/introduction.html)
-- [PyG (PyTorch Geometric) is a library built upon PyTorch to easily write and train Graph Neural Networks (GNNs) for a wide range of applications related to structured data.](https://github.com/pyg-team/pytorch_geometric)
-- [CloudCompare 3D point cloud and mesh processing software](https://www.danielgm.net/cc/)
-
-### Point Clouds
-
-- [Point Cloud Annotation Tool for Segmentation](https://github.com/walzimmer/3d-bat)
-- [PointNet++ PointCloud Segmentation with PyG](https://github.com/pyg-team/pytorch_geometric/blob/master/examples/pointnet2_segmentation.py)
