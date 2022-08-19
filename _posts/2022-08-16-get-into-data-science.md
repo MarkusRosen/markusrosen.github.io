@@ -1,7 +1,7 @@
 ---
 layout: post
 title: How to get into Data Science in 2022 without a CS background
-date: 2022-08-16 18:00:00 +0300
+date: 2022-08-19 18:00:00 +0300
 description: This post shows what books to read and courses to take to enter data science in 2022
 img: /post6/teaser.png
 tags:
@@ -54,6 +54,7 @@ You might notice that I'm mentioning many things that are not directly related t
     - [Shapley](#shapley)
     - [InterpretML](#interpretml)
   - [Hyperparameter tuning](#hyperparameter-tuning)
+- [Conclusion](#conclusion)
 
 ## General Introduction to CS and Programming
 
@@ -196,47 +197,54 @@ With over 800 pages [Hands-On Machine Learning with Scikit-Learn, Keras, and Ten
 
 ### Deep Learning
 
+Applied deep learning is divided mainly into two major libraries: Keras/Tensorflow and PyTorch. You will find resources, books, and state-of-the-art models in both libraries and sometimes only in one or the other. Therefore, a good understanding of both Keras and PyTorch is necessary.
+
 #### Deep Learning with Python
 
 [![Deep Learning with Python](../assets/img/post6/deep.jpg)](https://www.manning.com/books/deep-learning-with-python)
 
-- [Deep Learning with Python](https://www.manning.com/books/deep-learning-with-python)
+[Deep Learning with Python](https://www.manning.com/books/deep-learning-with-python) by the inventor of Keras François Chollet is an excellent introduction to applied deep learning in Python. You'll get a step-by-step introduction to neural networks, convolutional neural networks, recurrent neural networks like LSTMs, and a short introduction to GANs. Chollet supports his chapters with great real-world examples and illustrations.
 
 #### Practical Deep Learning Course
 
-- f[astai course](https://course.fast.ai/)
+The FastAI lecture [Practical Deep Learning](https://course.fast.ai/) by Jeremy Howard and Rachel Thomas is quite a different introduction to deep learning compared to most other resources available. Instead of teaching from the bottom up, starting with linear algebra, perceptrons, etc., they start by letting their students apply state-of-the-art models to real-world problems. Then they work their way down to the actual deep learning math later in the course. The lectures are taught using the FastAI framework built on top of PyTorch, introducing the second extensive DL library first. After the course, you could look into the great [official PyTorch tutorials](https://pytorch.org/tutorials/) to better understand PyTorch.
 
 ### Explainable AI
 
-link to own paper
+Predicting on new data with high accuracy is great, but in this day and age, not enough. Understanding your models and predictions and delivering explanations for your results is imperative. Unfortunately, most machine learning and deep learning algorithms are black boxes, making it difficult to interpret results. Difficult, but also not impossible. In recent years, enormous progress has been made in developing methods to explain black box models. In our 2021 paper in Applied Energy, we utilized deep neural networks to generate features from images that we then put into gradient boosted trees, making our deep learning features available for explainable AI algorithms.
 
 #### Interpretable Machine Learning - A Guide for Making Black Box Models Explainable
 
 [![Interpretable Machine Learning](../assets/img/post6/explainable.png)](https://christophm.github.io/interpretable-ml-book/)
 
-- [Interpretable Machine Learning A Guide for Making Black Box Models Explainable](https://christophm.github.io/interpretable-ml-book/)
+[Interpretable Machine Learning A Guide for Making Black Box Models Explainable](https://christophm.github.io/interpretable-ml-book/) is, in my opinion, the best resource available to get an understanding of the current state-of-the-art in explainable AI. The book is constantly updated with new algorithms explained and code examples and libraries linked. For instance, LIME, SHAP, Pixel Attribution, or partial dependence plots, all interesting methods, are described in great detail at an easy-to-understand level. You should have a statistics and machine learning foundation to get into the book.
 
 #### Alibi Explain
 
 [![Alibi Explain](../assets/img/post6/alibi.png)](https://docs.seldon.io/projects/alibi/en/stable/overview/high_level.html)
 
-- [Alibi Explain is an open source Python library aimed at machine learning model inspection and interpretation](https://docs.seldon.io/projects/alibi/en/stable/overview/high_level.html)
+Regarding interesting libraries, [Alibi Explain](https://docs.seldon.io/projects/alibi/en/stable/overview/high_level.html) sticks out as incredibly feature-rich with an easy-to-use API. You'll find many algorithms described in Interpretable Machine Learning implemented in Alibi Explain. The tutorials and documentation are also top-notch.
 
 #### Shapley
 
 [![Shapely](../assets/img/post6/shap.png)](https://shap.readthedocs.io/en/latest/example_notebooks/overviews/An%20introduction%20to%20explainable%20AI%20with%20Shapley%20values.html)
 
-- [An introduction to explainable AI with Shapley values](https://shap.readthedocs.io/en/latest/example_notebooks/overviews/An%20introduction%20to%20explainable%20AI%20with%20Shapley%20values.html)
+[SHAP](https://shap.readthedocs.io/en/latest/example_notebooks/overviews/An%20introduction%20to%20explainable%20AI%20with%20Shapley%20values.html) is pretty much the standard algorithm and library used when talking about explainable AI. It provides multiple algorithms for tree-based and neural network models and should be in your data science repertoire if you ever need to explain a model in more detail. The documentation is also quite good.
 
 #### InterpretML
 
 [![InterpretML](../assets/img/post6/interpretml.png)](https://github.com/interpretml/interpret)
 
-- [InterpretML Fit interpretable models. Explain blackbox machine learning.](https://github.com/interpretml/interpret)
+[InterpretML](https://github.com/interpretml/interpret) is currently primarily developed by Microsoft Research. The Explainable Boosting Machine was especially interesting to me as it represents an excellent trade-off between accuracy and explainability compared to other machine learning algorithms. The library and documentation are still in alpha status, but you should definitely keep an eye open for this library.
 
 ### Hyperparameter tuning
 
 [![Optuna](../assets/img/post6/optuna.png)](https://optuna.org/)
 
-https://optuna.org/
-https://optuna.readthedocs.io/en/stable/tutorial/index.html
+Sooner or later, you will need to tune some or all hyperparameters of your machine learning model or deep neural network. For this, multiple great libraries are available with a multitude of optimization algorithms. In my experience, the best of all in terms of API usability, available methods, and fast results is [Optuna](https://optuna.org/). They implement tree-parzen-estimators and multi-objective-tree-parzen-estimators, allowing you to find a great set of hyperparameters with very few iterations. The documentation is also in-depth and gets you started quickly.
+
+## Conclusion
+
+These were my recommendations to get into data science in 2022. There are a lot of other possible paths to start your data science career, like [free lectures from Stanford](https://cs230.stanford.edu/), [the famous Machine Learning Course by Andrew Ng](https://de.coursera.org/learn/machine-learning), or the [Dive into Deep Learning course](https://d2l.ai/). As a high-performance alternative to Python, [Julia](https://julialang.org/) is also getting more traction with their [MLJ.jl library](https://alan-turing-institute.github.io/MLJ.jl/dev/).
+
+Other interesting data science topics to get into are [geometric deep learning](https://geometricdeeplearning.com/) for 3D data and graph-based data with [PyG](https://pytorch-geometric.readthedocs.io/en/latest/) or deep reinforcement learning with the [OpenAI Gym](https://www.gymlibrary.ml/).
