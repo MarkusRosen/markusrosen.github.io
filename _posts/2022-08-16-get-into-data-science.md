@@ -54,6 +54,7 @@ You might notice that I'm mentioning many things that are not directly related t
     - [Shapley](#shapley)
     - [InterpretML](#interpretml)
   - [Hyperparameter tuning](#hyperparameter-tuning)
+    - [Optuna](#optuna)
 - [Conclusion](#conclusion)
 
 ## General Introduction to CS and Programming
@@ -239,9 +240,13 @@ Regarding interesting libraries, [Alibi Explain](https://docs.seldon.io/projects
 
 ### Hyperparameter tuning
 
+Sooner or later, you will need to tune some or all hyperparameters of your machine learning model or deep neural network. For this, multiple great libraries are available with a multitude of optimization algorithms.
+
+#### Optuna
+
 [![Optuna](../assets/img/post6/optuna.png)](https://optuna.org/)
 
-Sooner or later, you will need to tune some or all hyperparameters of your machine learning model or deep neural network. For this, multiple great libraries are available with a multitude of optimization algorithms. In my experience, the best of all in terms of API usability, available methods, and fast results is [Optuna](https://optuna.org/). They implement tree-parzen-estimators and multi-objective-tree-parzen-estimators, allowing you to find a great set of hyperparameters with very few iterations. The documentation is also in-depth and gets you started quickly.
+In my experience, the best of all in terms of API usability, available methods, and fast results is [Optuna](https://optuna.org/). They implement tree-parzen-estimators and multi-objective-tree-parzen-estimators, allowing you to find a great set of hyperparameters with very few iterations. The documentation is also in-depth and gets you started quickly.
 
 ## Conclusion
 
