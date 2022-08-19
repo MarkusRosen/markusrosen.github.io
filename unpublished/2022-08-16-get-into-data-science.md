@@ -19,6 +19,8 @@ As I'm nearing the end of my time as a Ph.D. student, I was wondering how I woul
 
 The sheer amount of available books, courses, and tutorials on data science can be overwhelming. In this blog post, I collected all the material that, in my personal opinion, gives a great introduction to python programming, data preprocessing, machine learning as well as data engineering. If anyone has additional recommendations, please post them in the comments with a short explanation of why you found them helpful!
 
+You might notice that I'm mentioning many things that are not directly related to training deep learning models. I spent most of my time as a Ph.D. student wrangling and merging large, complex data sets, visualizing non-linear relationships, engineering complex data processing pipelines, and delivering interactive results to project partners. I spent way less of my time actually training any models. Therefore, I put more emphasis on engineering and data processing in this post than you might expect.
+
 ## Table of Contents
 
 - [Table of Contents](#table-of-contents)
@@ -37,15 +39,15 @@ The sheer amount of available books, courses, and tutorials on data science can 
     - [Fundamentals of Data Visualization](#fundamentals-of-data-visualization)
     - [Scientific Visualization - Python & Matplotlib](#scientific-visualization---python--matplotlib)
     - [Streamlit](#streamlit)
-    - [Quarto](#quarto)
+    - [quarto](#quarto)
   - [Statistics](#statistics)
     - [Statistical Rethinking: A Bayesian Course with Examples in R and STAN](#statistical-rethinking-a-bayesian-course-with-examples-in-r-and-stan)
   - [Machine Learning](#machine-learning)
     - [Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow, 2nd Edition](#hands-on-machine-learning-with-scikit-learn-keras-and-tensorflow-2nd-edition)
     - [Applied Predictive Modelling](#applied-predictive-modelling)
   - [Deep Learning](#deep-learning)
-    - [Deep Learning with Python (keras)](#deep-learning-with-python-keras)
-    - [Practical Deep Learning Course (FastAI)](#practical-deep-learning-course-fastai)
+    - [Deep Learning with Python](#deep-learning-with-python)
+    - [Practical Deep Learning Course](#practical-deep-learning-course)
   - [Explainable AI](#explainable-ai)
     - [Interpretable Machine Learning - A Guide for Making Black Box Models Explainable](#interpretable-machine-learning---a-guide-for-making-black-box-models-explainable)
     - [Alibi Explain](#alibi-explain)
@@ -118,78 +120,89 @@ If you ever need to share your code or work on the same code base collaborativel
 
 ### Databases
 
+At the beginning of your data science career, you will often encounter small CSV-file-based example datasets like Iris, Titanic, or the IMDB movie dataset. As soon as you start working on custom data, try to use databases to save your data. Databases have numerous advantages over regular data files, like faster access, network access, and consistent data storage, that anyone can use in almost any programming language. To interact with databases, you need to understand SQL or use an ORM like SQLAlchemy in Python. The advantage of learning SQL is that you can universally interact with almost any database and programming language. At the same time, ORMs are more object-oriented and fit better into your regular Python codebase.
+[![SQLite](../assets/img/post6/sqlite.png)](https://www.sqlitetutorial.net/)
+SQLite is an excellent start to getting used to working with databases. An SQLite database is a single file where multiple tables can be saved into. The data access is high-speed, and as mentioned before, most programming languages can interface with SQLite. A nice introduction to SQLite can be found at [sqlitetutorial.net](https://www.sqlitetutorial.net/).
+
 [![PostgreSQL](../assets/img/post6/postgre.png)](https://www.postgresqltutorial.com/)
 
-- [Introduction to PostgreSQL](https://www.postgresqltutorial.com/)
-
-[![SQLite](../assets/img/post6/sqlite.png)](https://www.sqlitetutorial.net/)
-
-- [Introduction to SQLite](https://www.sqlitetutorial.net/)
+PostgreSQL is not as simple as an SQLite file and needs a server to run. However, the main advantage is that you and your collaborators can simultaneously interact with the same datasets over a network. As with SQLite, you can find a good tutorial at [postgresqltutorial.com](https://www.postgresqltutorial.com/).
 
 ## Introduction to Machine Learning, Deep Learning and Explainable AI
+
+To train any models, you most often need to preprocess your data, merge different data sources, and understand your data. Data preprocessing with Pandas and NumPy can be pretty complex, as can complex custom Matplotlib plots. The following books are worth every penny, and I highly recommend you to read them before starting to get into training machine learning models.
 
 ### Data Preprocessing in Python
 
 [![Python for Data Analysis](../assets/img/post6/python-data-analysis.png)](https://wesmckinney.com/book/)
 
-- [Python for Data Analysis, 3rd Edition](https://wesmckinney.com/book/)
+[Python for Data Analysis, 3rd Edition](https://wesmckinney.com/book/) from Wes McKinney should be read by anyone working with data in Python. Wes McKinney is the original creator of Pandas and has a clear writing style that is a joy to read. His book covers the basics of Python programming, NumPy data manipulation, and data preprocessing with Pandas in detail and even has a chapter on Matplotlib.
 
 ### Data Visualization
+
+To understand your data, you most likely need to visualize it. Well-defined plots can also help others understand your modeling results better than any regular old table.
 
 #### Fundamentals of Data Visualization
 
 [![Fundamentals of Data Visualization](../assets/img/post6/data-visualization.png)](https://clauswilke.com/dataviz/)
 
-- https://clauswilke.com/dataviz/
+To understand what differentiates good, informative, concise graphs from bad ones, [Fundamentals of Data Visualization](https://clauswilke.com/dataviz/) is a great introduction. The plots themsevels are programmed in R with ggplot2, but the general ideas are still easily applied in Python with Matplotlib.
 
 #### Scientific Visualization - Python & Matplotlib
 
 [![Scientific Visualization](../assets/img/post6/matplotlib.png)](https://github.com/rougier/scientific-visualization-book)
 
-- https://github.com/rougier/scientific-visualization-book
+When working with Python, data, and any kind of ML library, you will have to use Matplotlib. There is pretty much no way around it. Unfortunately, the Matplotlib API can be challenging and complex, especially compared to R's ggplot2 or JavaScript Vega-Lite. Nicolas Rougier delivered an excellent in-depth book on working with Matplotlib to clarify the API in the greatest detail possible. The book includes multiple plots that seem way too pretty to result from good old Matplotlib. The code for all plots is also available in his [GitHub repo](https://github.com/rougier/scientific-visualization-book).
+
+[![Matplotlib plot](../assets/img/post6/matplotlib_example.png)](https://github.com/rougier/scientific-visualization-book)
+An example of a complex, beautiful Matplotlib plot are the biological cells above.
 
 #### Streamlit
 
 [![Streamlit](../assets/img/post6/streamlit.png)](https://streamlit.io/)
+Suppose you need to deliver your data and models with interactive components. In that case, you need to learn how to program REST APIs, frontends with JavaScript, and a complex web deployment process, or you can just use [Streamlit](https://streamlit.io/). Then, with only a few additional lines of Python code, your data science project can be turned into an interactive website or dashboard for anyone to learn from your work.
 
-- https://streamlit.io/
+#### quarto
 
-#### Quarto
+[![quarto](../assets/img/post6/quarto.png)](https://quarto.org/)
 
-https://quarto.org/
+[Quarto](https://quarto.org/) has some similar goals to Streamlit. It helps you present your code interactively as a webpage or as a well-formatted PDF report using only Python or R code. The formatting markdown language is similar to the established RMarkDown, since RStudio is the leading company behind both standards. For an example website using quarto, take a look at the [Python for Data Analysis, 3rd Edition](https://wesmckinney.com/book/)
 
 ### Statistics
+
+A data scientist should know basic statistics. For the actual training of deep learning models, it is not needed. Still, you will have a far easier time understanding what you are actually doing if you know probabilities, distributions, and other statistical concepts.
 
 #### Statistical Rethinking: A Bayesian Course with Examples in R and STAN
 
 [![Statistical Rethinking](../assets/img/post6/bayes.jpg)](https://www.amazon.com/dp/036713991X)
 
-- [Statistical Rethinking: A Bayesian Course with Examples in R and STAN](https://www.amazon.com/dp/036713991X)
-- https://fehiepsi.github.io/rethinking-numpyro/
+As I studied economics, I enjoyed quite a few statistics and econometrics courses and lectures. But none were as clear, accessible, and informative as [Statistical Rethinking: A Bayesian Course with Examples in R and STAN](https://www.amazon.com/dp/036713991X). It is an absolute joy to read, and I can't recommend it enough to anyone with a fundamental interest in data and statistics. Richard McElreath also provides his entire stats lecture for [free on Youtube](https://www.youtube.com/watch?v=BYUykHScxj8&list=PLDcUM9US4XdMROZ57-OIRtIK0aOynbgZN). The code for Statistical Rethinking is written in Stan and R, but you can find the solutions for every problem and plot in Python and NumPyro [in this repo](https://fehiepsi.github.io/rethinking-numpyro/).
 
 ### Machine Learning
+
+Back in the day, I had to understand how to use multiple machine learning algorithms in Python within a few weeks to produce my master thesis. Therefore I had to find books that are easy to understand while simultaneously providing a deep dive into as many machine learning algorithms as possible. To this day, I can wholeheartedly recommend the following two books.
 
 #### Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow, 2nd Edition
 
 [![Hands-On Machine Learning](../assets/img/post6/hands-on.jpg)](https://www.oreilly.com/library/view/hands-on-machine-learning/9781492032632/)
 
-- [Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow, 2nd Edition](https://www.oreilly.com/library/view/hands-on-machine-learning/9781492032632/)
+With over 800 pages [Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow, 2nd Edition](https://www.oreilly.com/library/view/hands-on-machine-learning/9781492032632/) can seem quite intimidating. But since the book covers all relevant machine learning and deep learning algorithms in theory and application with Python, it is one of the best to get into machine learning fast. Moreover, it is accessible with many illustrations and code examples and divided into two major parts: machine learning with scikit-learn and deep learning with Keras. I'm still very grateful that I found this book in the first edition back in the day, as it helped me immensely to get up to speed in machine learning.
 
 #### Applied Predictive Modelling
 
 [![Applied Predictive Modelling](../assets/img/post6/applied.jpg)](https://www.amazon.com/dp/1461468485/)
 
-- [Applied Predictive Modelling](https://www.amazon.com/dp/1461468485/)
+[Applied Predictive Modelling](https://www.amazon.com/dp/1461468485/) is a classic read about introducing machine learning algorithms to new students. It covers many regular machine learning models like random forests, support vector machines, and more. It is written with R in mind, but this does not affect the great explanations of algorithms. So if you find some explanations from Hands-On Machine Learning harder to understand, give this book a try. However, keep in mind that it was released in 2013 and is not up-to-date on all recent developments in machine learning and deep learning.
 
 ### Deep Learning
 
-#### Deep Learning with Python (keras)
+#### Deep Learning with Python
 
 [![Deep Learning with Python](../assets/img/post6/deep.jpg)](https://www.manning.com/books/deep-learning-with-python)
 
 - [Deep Learning with Python](https://www.manning.com/books/deep-learning-with-python)
 
-#### Practical Deep Learning Course (FastAI)
+#### Practical Deep Learning Course
 
 - f[astai course](https://course.fast.ai/)
 
