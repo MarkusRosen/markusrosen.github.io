@@ -212,7 +212,7 @@ The FastAI lecture [Practical Deep Learning](https://course.fast.ai/) by Jeremy 
 
 ### Explainable AI
 
-Predicting on new data with high accuracy is great, but in this day and age, not enough. Understanding your models and predictions and delivering explanations for your results is imperative. Unfortunately, most machine learning and deep learning algorithms are black boxes, making it difficult to interpret results. Difficult, but also not impossible. In recent years, enormous progress has been made in developing methods to explain black box models. In our 2021 paper in Applied Energy, we utilized deep neural networks to generate features from images that we then put into gradient boosted trees, making our deep learning features available for explainable AI algorithms.
+Predicting on new data with high accuracy is great, but in this day and age, not enough. Understanding your models and predictions and delivering explanations for your results is imperative. Unfortunately, most machine learning and deep learning algorithms are black boxes, making it difficult to interpret results. Difficult, but also not impossible. In recent years, enormous progress has been made in developing methods to explain black box models. [In our 2021 paper in Applied Energy](https://www.sciencedirect.com/science/article/abs/pii/S0306261921008047), we utilized deep neural networks to generate features from images that we then put into gradient boosted trees, making our deep learning features available for explainable AI algorithms.
 
 #### Interpretable Machine Learning - A Guide for Making Black Box Models Explainable
 
