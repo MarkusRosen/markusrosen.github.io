@@ -68,6 +68,7 @@ Python is still the #1 programming language for machine learning and data scienc
 #### Automate the Boring Stuff
 
 [![Automate the Boring Stuff](../assets/img/post6/automate.jpg)](https://automatetheboringstuff.com/)
+
 I personally learned Python programming a few years ago with a printed edition of [Automate the Boring Stuff with Python](https://automatetheboringstuff.com/). It is an excellent introduction to programming due to the shallow entry barrier and steady learning curve. Still, it does not shy away from more complex examples and gives beginners a chance to play around with python code on their own.
 
 #### Python for absolute beginners
