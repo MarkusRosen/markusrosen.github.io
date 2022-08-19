@@ -110,6 +110,7 @@ A few extensions I would always recommend:
 #### Docker for Machine Learning
 
 [![Docker](../assets/img/post6/docker.png)](https://www.docker.com/)
+
 If you ever had to debug or run Python code from another person, you probably have encountered hours of library incompatibilities or similar issues. Python code packaging and versioning can be a nightmare. There is even an [xkcd for this particular problem](https://imgs.xkcd.com/comics/python_environment.png). For example, [getting Tensorflow installed correctly](https://rosenfelder.ai/setup-keras-and-tensorflow/) to run on your local GPU can be a very specific version of hell.
 
 Another problem when working on Python code in data science is the reproducibility of your results. How can you ensure that everyone who works on your code gets the same results as you?
@@ -123,7 +124,9 @@ If you ever need to share your code or work on the same code base collaborativel
 ### Databases
 
 At the beginning of your data science career, you will often encounter small CSV-file-based example datasets like Iris, Titanic, or the IMDB movie dataset. As soon as you start working on custom data, try to use databases to save your data. Databases have numerous advantages over regular data files, like faster access, network access, and consistent data storage, that anyone can use in almost any programming language. To interact with databases, you need to understand SQL or use an ORM like SQLAlchemy in Python. The advantage of learning SQL is that you can universally interact with almost any database and programming language. At the same time, ORMs are more object-oriented and fit better into your regular Python codebase.
+
 [![SQLite](../assets/img/post6/sqlite.png)](https://www.sqlitetutorial.net/)
+
 SQLite is an excellent start to getting used to working with databases. An SQLite database is a single file where multiple tables can be saved into. The data access is high-speed, and as mentioned before, most programming languages can interface with SQLite. A nice introduction to SQLite can be found at [sqlitetutorial.net](https://www.sqlitetutorial.net/).
 
 [![PostgreSQL](../assets/img/post6/postgre.png)](https://www.postgresqltutorial.com/)
@@ -157,11 +160,13 @@ To understand what differentiates good, informative, concise graphs from bad one
 When working with Python, data, and any kind of ML library, you will have to use Matplotlib. There is pretty much no way around it. Unfortunately, the Matplotlib API can be challenging and complex, especially compared to R's ggplot2 or JavaScript Vega-Lite. Nicolas Rougier delivered an excellent in-depth book on working with Matplotlib to clarify the API in the greatest detail possible. The book includes multiple plots that seem way too pretty to result from good old Matplotlib. The code for all plots is also available in his [GitHub repo](https://github.com/rougier/scientific-visualization-book).
 
 [![Matplotlib plot](../assets/img/post6/matplotlib_example.png)](https://github.com/rougier/scientific-visualization-book)
+
 An example of a complex, beautiful Matplotlib plot are the biological cells above.
 
 #### Streamlit
 
 [![Streamlit](../assets/img/post6/streamlit.png)](https://streamlit.io/)
+
 Suppose you need to deliver your data and models with interactive components. In that case, you need to learn how to program REST APIs, frontends with JavaScript, and a complex web deployment process, or you can just use [Streamlit](https://streamlit.io/). Then, with only a few additional lines of Python code, your data science project can be turned into an interactive website or dashboard for anyone to learn from your work.
 
 #### quarto
