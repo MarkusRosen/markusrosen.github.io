@@ -97,7 +97,6 @@ These three tutorials help you get started with Python, Data Science and remote 
 
 - [Getting Started with Python in VS Code](https://code.visualstudio.com/docs/python/python-tutorial)
 - [Data Science in VS Code tutorial](https://code.visualstudio.com/docs/datascience/data-science-tutorial)
-
 - [VS Code Remote Development](https://code.visualstudio.com/docs/remote/remote-overview)
 
 A few extensions I would always recommend:
