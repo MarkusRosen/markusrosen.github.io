@@ -6,7 +6,7 @@ permalink: /research/
 
 ## Journal Articles
 
-> Automated real estate valuation with machine learning models using property descriptions <br> Baur K, Rosenfelder M, Lutz B <br> 2022 Expert Systems with Applications, Band: forthcoming
+> [Automated real estate valuation with machine learning models using property descriptions](https://www.sciencedirect.com/science/article/pii/S0957417422021650?dgcid=coauthor) <br> Baur K, Rosenfelder M, Lutz B <br> 2022 Expert Systems with Applications, Band: forthcoming
 
 > [Predicting Residential Electricity Consumption Using Aerial and Street View Images](https://doi.org/10.1016/j.apenergy.2021.117407) <br> Rosenfelder M, Wussow M, Gust G, Cremades R, Neumann D <br> 2021 Applied Energy, volume: 301, page: 117407
 
